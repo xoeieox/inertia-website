@@ -1,0 +1,36 @@
+{
+  "name": "inertia-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "vault-access": "node scripts/vault-access-bridge.js",
+    "auto-publish": "node scripts/vault-access-bridge.js autoPublish",
+    "vault-search": "node scripts/vault-access-bridge.js search"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/markdown-it": "^14.1.2",
+    "fs-extra": "^11.3.2",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0",
+    "next": "15.5.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
