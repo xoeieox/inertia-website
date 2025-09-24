@@ -1,0 +1,2 @@
+/Users/erhei/Library/CloudStorage/ProtonDrive-x
+  erah@pm.me-folder/inertia-vault/Inertia Home.md
