@@ -17,8 +17,9 @@ echo "📦 Copying built files to repository root..."
 # Copy all contents from out/ to root
 cp -r out/* ./
 
-echo "📝 Adding files to git..."
-git add .
+echo "📝 Adding only built files to git..."
+# Only add the built files, not development artifacts
+git add *.html *.ico *.svg *.txt _next/ 404/
 
 echo "✅ Deployment files ready! Run 'git commit' and 'git push' to deploy."
 echo ""
