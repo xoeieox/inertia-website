@@ -1,0 +1,57 @@
+{
+  "name": "@your-username/visual-toolkit",
+  "version": "1.0.0",
+  "description": "Reusable P5.js visual toolkit for data visualization, algorithm visualization, and interactive art",
+  "main": "src/VisualToolkit.js",
+  "scripts": {
+    "dev": "npx live-server --port=3001 --open=/examples/index.html",
+    "build": "echo 'Build process - can be configured for bundling'",
+    "test": "echo 'Test suite - can be configured with Jest or similar'",
+    "docs": "echo 'Documentation generation - can use JSDoc'"
+  },
+  "keywords": [
+    "p5js",
+    "visualization",
+    "data-visualization",
+    "algorithm-visualization",
+    "generative-art",
+    "creative-coding",
+    "interactive",
+    "toolkit",
+    "graphics",
+    "canvas"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/visual-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/visual-toolkit/issues"
+  },
+  "homepage": "https://github.com/your-username/visual-toolkit#readme",
+  "peerDependencies": {
+    "p5": "^1.7.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  },
+  "files": [
+    "src/",
+    "components/",
+    "utils/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./src/VisualToolkit.js",
+    "./data": "./components/DataVisualizer.js",
+    "./algorithms": "./components/AlgorithmVisualizer.js",
+    "./utils": "./utils/index.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

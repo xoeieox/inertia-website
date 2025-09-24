@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,21 +28,21 @@ export default function RootLayout({
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    <a href="/" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
+                    <Link href="/" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
                       Home
-                    </a>
-                    <a href="/products" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
+                    </Link>
+                    <Link href="/products" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
                       Products
-                    </a>
-                    <a href="/technology" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
+                    </Link>
+                    <Link href="/technology" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
                       Technology
-                    </a>
-                    <a href="/about" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
+                    </Link>
+                    <Link href="/about" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
                       About
-                    </a>
-                    <a href="/blog" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
+                    </Link>
+                    <Link href="/blog" className="hover:bg-slate-700 px-3 py-2 rounded-md text-sm font-medium">
                       Blog
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -65,16 +66,16 @@ export default function RootLayout({
               <div>
                 <h3 className="text-lg font-semibold mb-4">Products</h3>
                 <ul className="text-slate-300 space-y-2">
-                  <li><a href="/products/insight" className="hover:text-white">Insight</a></li>
-                  <li><a href="/products/catalyst" className="hover:text-white">Catalyst</a></li>
-                  <li><a href="/products/axis" className="hover:text-white">Axis</a></li>
+                  <li><Link href="/products/insight" className="hover:text-white">Insight</Link></li>
+                  <li><Link href="/products/catalyst" className="hover:text-white">Catalyst</Link></li>
+                  <li><Link href="/products/axis" className="hover:text-white">Axis</Link></li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-4">Connect</h3>
                 <ul className="text-slate-300 space-y-2">
-                  <li><a href="/about" className="hover:text-white">About</a></li>
-                  <li><a href="/blog" className="hover:text-white">Blog</a></li>
+                  <li><Link href="/about" className="hover:text-white">About</Link></li>
+                  <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
                   <li><a href="https://github.com" className="hover:text-white">GitHub</a></li>
                 </ul>
               </div>
