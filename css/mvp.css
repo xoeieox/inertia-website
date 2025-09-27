@@ -198,6 +198,7 @@ h3 {
     border: 1px solid transparent;
     position: relative;
     overflow: hidden;
+
     /* Flexbox layout for better internal spacing */
     display: flex;
     flex-direction: column;
@@ -238,6 +239,7 @@ h3 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     animation: voidFloat 6s ease-in-out infinite;
+
     /* Consistent positioning regardless of text length */
     position: absolute;
     top: 12px;
@@ -415,6 +417,14 @@ h3 {
         width: 100%;
         text-align: center;
     }
+
+    /* Ensure badges don't get cut off on small screens */
+    .pre-order-badge {
+        top: 8px;
+        right: 8px;
+        font-size: 11px;
+        padding: calc(var(--space-unit) * 0.4) calc(var(--space-unit) * 1.5);
+    }
 }
 
 /* ============================================
@@ -471,6 +481,7 @@ h3 {
     background: rgba(0, 229, 255, 0.05);
     border: 1px solid rgba(0, 229, 255, 0.1);
     transition: var(--transition);
+
     /* Flexbox gap handles spacing now */
 }
 
