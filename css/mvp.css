@@ -198,6 +198,10 @@ h3 {
     border: 1px solid transparent;
     position: relative;
     overflow: hidden;
+    /* Flexbox layout for better internal spacing */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 2);
 }
 
 .card::before {
@@ -234,6 +238,12 @@ h3 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     animation: voidFloat 6s ease-in-out infinite;
+    /* Consistent positioning regardless of text length */
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transform: translate(25%, -25%);
+    white-space: nowrap;
 }
 
 /* Form Elements */
@@ -445,4 +455,60 @@ h3 {
     radial-gradient(1px 1px at 80% 50%, rgba(0,229,255,0.1), transparent);
     background-size: 200px 200px, 150px 150px, 100px 100px;
     animation: voidFloat 20s linear infinite;
+}
+
+/* ============================================
+   PRODUCT ICON SYSTEM
+   ============================================ */
+/* SVG Icon Container */
+.product-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    transition: var(--transition);
+    /* Flexbox gap handles spacing now */
+}
+
+.product-icon svg {
+    width: 48px;
+    height: 48px;
+    fill: var(--cyan);
+    stroke: var(--cyan);
+    transition: var(--transition);
+}
+
+.card:hover .product-icon {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.card:hover .product-icon svg {
+    fill: var(--frost);
+    stroke: var(--frost);
+}
+
+/* Ecosystem Icon Container (smaller version) */
+.ecosystem-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto calc(var(--space-unit) * 1);
+    border-radius: 6px;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.ecosystem-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: var(--cyan);
+    stroke: var(--cyan);
 }
