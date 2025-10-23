@@ -1,38 +1,39 @@
-# Inertia Static Website
+# Inertia Website
 
-This is the simplified static version of the Inertia website, designed for:
-- Visual editing with Pinegrow
-- Simple deployment (no build step)
-- Easy maintenance and updates
+Static website for Inertia - Data-Driven Beyblade Performance
 
-## Files Structure
+## 📁 Project Structure
 
-- `index.html` - Homepage
-- `css/` - Stylesheets (MVP design system + custom styles)
-- `js/` - Alpine.js interactivity
-- `assets/` - Images, fonts, and other static assets
+```
+/
+├── static-site/          # SOURCE FILES - Edit these!
+│   ├── index.html        # Homepage
+│   ├── products/         # Product pages
+│   ├── css/              # Stylesheets
+│   ├── assets/           # Images, icons
+│   └── deploy.sh         # Deployment script
+├── CLAUDE.md             # Context for Claude Code
+├── DEPLOYMENT.md         # Deployment documentation
+└── README.md             # This file
+```
 
-## Technology Stack
+## 🚀 Deployment
 
-- **HTML** - Standard semantic HTML5
-- **CSS** - MVP design system + Tailwind utilities
-- **Alpine.js** - Lightweight JavaScript framework for interactivity
-- **No build step** - Edit files directly and upload
+All source files live in `static-site/`. The deployment script copies them to the repository root and pushes to GitHub, which automatically syncs to Hostinger.
 
-## Deployment
+**To deploy:**
+```bash
+cd static-site
+./deploy.sh
+```
 
-Simply copy files to your web server. No compilation needed.
+## ✏️ Making Changes
 
-## Development
+1. Edit files in `static-site/` directory
+2. Test locally by opening `static-site/index.html` in browser
+3. Run `./deploy.sh` from inside `static-site/` directory
+4. Changes automatically deploy to Hostinger
 
-1. Edit files in any editor or Pinegrow
-2. Open `index.html` in browser to preview
-3. Deploy by uploading changed files
+## 📝 Note
 
-## Key Features
-
-- Responsive design
-- Smooth scroll animations
-- Dark theme with cyan accents
-- MVP design system implementation
-- Void aesthetic with subtle particles
+**Do NOT edit files in the repository root** - they get overwritten during deployment. Always edit files in `static-site/`.
