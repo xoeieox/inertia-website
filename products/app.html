@@ -23,7 +23,7 @@
                     <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
                         <div class="hidden md:flex items-center space-x-8">
                             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                                <button class="text-cyan text-sm tracking-wider uppercase flex items-center gap-1">
+                                <button class="text-cyan text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
                                     Products
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -31,7 +31,7 @@
                                 </button>
                                 <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Inertia App</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
                                 </div>
-                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">Platform</a><a href="/404.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">Dev Blog</a><a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">About</a>
+                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/404.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Dev Blog</a><a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">About</a>
                         </div>
                     </div>
                 </div>
