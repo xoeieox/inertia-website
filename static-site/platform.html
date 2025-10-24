@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Platform | Inertia</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>* { margin: 0; padding: 0; box-sizing: border-box; } body { background: #0A0A0A; color: #F5F5F5; font-family: 'Inter Tight', -apple-system, sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; } .container { text-align: center; padding: 2rem; max-width: 600px; } .spinner { width: 80px; height: 80px; margin: 0 auto 3rem; position: relative; } .spinner::before { content: '◈'; font-size: 4rem; color: #00E5FF; opacity: 0.6; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 3s linear infinite; } @keyframes spin { from {  transform: translate(-50%, -50%) rotate(0deg); }  to {  transform: translate(-50%, -50%) rotate(360deg); } } h1 { font-size: 3rem; font-weight: 200; letter-spacing: 0.2em; margin-bottom: 1rem; color: #F5F5F5; } p { font-size: 1.25rem; font-weight: 300; color: rgba(245, 245, 245, 0.7); margin-bottom: 3rem; letter-spacing: 0.05em; } .cta { display: inline-block; padding: 1rem 2.5rem; background: transparent; border: 1px solid #00E5FF; color: #00E5FF; text-decoration: none; font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; transition: all 0.3s ease; border-radius: 4px; } .cta:hover { background: rgba(0, 229, 255, 0.1); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2); } @media (max-width: 640px) { h1 {  font-size: 2rem; }  p {  font-size: 1rem; }  .spinner {  width: 60px;  height: 60px; }  .spinner::before {  font-size: 3rem; } }</style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="spinner"></div>
+            <h1>THEORYCRAFTING...</h1>
+            <p>This page is still in development. Launching soon.</p><a href="/" class="cta">Return Home</a>
+        </div>
+    </body>
+</html>

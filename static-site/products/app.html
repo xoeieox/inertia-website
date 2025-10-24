@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inertia App - Tournament Platform | Inertia</title>
+        <meta name="description" content="Free tournament management platform for competitive battling tops. Save organizers hours, track player progress, build community proof.">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- External Stylesheets -->
+        <link href="../css/design-tokens.css" rel="stylesheet" type="text/css">
+        <link href="../css/utilities.css" rel="stylesheet" type="text/css">
+        <link href="../css/mvp.css" rel="stylesheet" type="text/css">
+        <link href="../css/animations.css" rel="stylesheet" type="text/css">
+        <!-- Alpine.js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body>
+        <div class="min-h-screen">
+            <!-- NAVIGATION -->
+            <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px);">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                        <div class="hidden md:flex items-center space-x-8">
+                            <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                                <button class="text-cyan text-sm tracking-wider uppercase flex items-center gap-1">
+                                    Products
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Inertia App</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                                </div>
+                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">Platform</a><a href="/404.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">Dev Blog</a><a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase">About</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- HERO SECTION -->
+            <section class="relative pt-32 pb-20" x-data="{ loaded: false }" x-init="setTimeout(() => loaded = true, 200)">
+                <div class="container max-w-4xl mx-auto px-6 text-center">
+                    <div class="mb-8" x-show="loaded" x-transition>
+                        <img src="../assets/feather-66fcf1_teal/zap.svg" style="width: 80px; height: 80px;" class="mx-auto opacity-60"/>
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-thin tracking-widest mb-6" x-show="loaded" x-transition>
+                        INERTIA APP </h1>
+                    <p class="text-2xl sm:text-3xl text-cyan font-light tracking-wide mb-6" x-show="loaded" x-transition>
+                        Your tournament never stalls—it gains momentum. </p>
+                    <p class="text-lg text-gray-300 text-opacity-80 max-w-2xl mx-auto mb-12" x-show="loaded" x-transition>
+                        Tournament management that saves organizers hours. Match tracking for players. Battle history and performance analytics. Free, forever. </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center" x-show="loaded" x-transition><a href="/#newsletter" class="cta-primary text-lg px-10 py-4">Join Beta Waitlist</a><a href="/platform.html" class="cta-secondary text-lg px-10 py-4">Explore Platform</a>
+                    </div>
+                    <div class="mt-8 text-sm text-gray-400"><span class="inline-block px-4 py-2 bg-gold bg-opacity-20 text-gold rounded-full">Q1 2026 • FREE</span>
+                    </div>
+                </div>
+            </section>
+            <!-- THE PROBLEM -->
+            <section class="py-20 bg-black bg-opacity-30">
+                <div class="container max-w-4xl mx-auto px-6">
+                    <h2 class="text-3xl sm:text-4xl font-thin tracking-wider mb-12 text-center">The Problem</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="card">
+                            <h3 class="text-xl text-cyan mb-4 font-light">For Organizers</h3>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>90+ minutes manually managing brackets and pairings</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Paper scoring prone to errors and disputes</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No automated swiss pairings or tiebreakers</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Players constantly asking "When's my next match?"</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl text-cyan mb-4 font-light">For Players</h3>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No visibility into rankings or next opponents</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Battle history scattered across notebooks and photos</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No way to track personal progress over time</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Hard to prove skill vs. luck without data</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- THE SOLUTION -->
+            <section class="py-20">
+                <div class="container max-w-4xl mx-auto px-6">
+                    <h2 class="text-3xl sm:text-4xl font-thin tracking-wider mb-12 text-center">The Solution</h2>
+                    <div class="card mb-12">
+                        <h3 class="text-2xl text-cyan mb-6 font-light text-center">One App. Two Roles. Zero Friction.</h3>
+                        <p class="text-lg text-gray-300 mb-8 text-center">
+                            The Inertia app starts with one screen. Scan a QR code to check in as a player, or create a tournament to become an organizer. Same app, seamless experience, built for speed. </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="card">
+                            <h3 class="text-xl text-cyan mb-4 font-light">Organizer Features</h3>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Auto Swiss Pairings:</strong> Instant matchups with tiebreakers</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Live Brackets:</strong> Players see updates in real-time</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>QR Check-In:</strong> No typing names, instant registration</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Save 90 Minutes:</strong> Automated admin = more community focus</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="text-xl text-cyan mb-4 font-light">Player Features</h3>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Match Tracking:</strong> See who you're fighting next</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Battle History:</strong> Every match, every outcome, tracked</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Performance Stats:</strong> Win rates, trends, insights</span>
+                                </li>
+                                <li class="flex items-center gap-3"><span class="text-cyan">✓</span><span><strong>Build Proof:</strong> Data shows it's skill, not luck</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- HOW IT EXPANDS YOUR ECOSYSTEM -->
+            <section class="py-20 bg-black bg-opacity-30">
+                <div class="container max-w-4xl mx-auto px-6">
+                    <h2 class="text-3xl sm:text-4xl font-thin tracking-wider mb-12 text-center">How It Expands Your Possibilities</h2>
+                    <div class="space-y-6">
+                        <div class="card">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl text-cyan">◈</div>
+                                <div>
+                                    <h3 class="text-xl text-cyan mb-2 font-light">Platform for Everything</h3>
+                                    <p class="text-gray-300">The app is your hub. Tournaments live here. Your devices sync here. Your performance data accumulates here. Everything connects through one platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl text-cyan">◈</div>
+                                <div>
+                                    <h3 class="text-xl text-cyan mb-2 font-light">Insight Integration</h3>
+                                    <p class="text-gray-300">When Insight launches (Q2 2026), your launch data automatically syncs to your tournament profile. See how your technique performs under pressure.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl text-cyan">◈</div>
+                                <div>
+                                    <h3 class="text-xl text-cyan mb-2 font-light">Axis Verification</h3>
+                                    <p class="text-gray-300">When Axis arrives (Q3 2026), disputed battles get computer vision verification. The app shows verified results alongside match history.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl text-cyan">◈</div>
+                                <div>
+                                    <h3 class="text-xl text-cyan mb-2 font-light">Community Proof</h3>
+                                    <p class="text-gray-300">Every tournament adds legitimacy. Every match builds the dataset. Your collective participation proves battling tops are a sport—with data that speaks for itself.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- TIMELINE & PRICING -->
+            <section class="py-20">
+                <div class="container max-w-4xl mx-auto px-6">
+                    <h2 class="text-3xl sm:text-4xl font-thin tracking-wider mb-12 text-center">Timeline & Access</h2>
+                    <div class="card max-w-2xl mx-auto">
+                        <div class="text-center mb-8">
+                            <div class="text-5xl font-thin text-cyan mb-4">FREE</div>
+                            <p class="text-xl text-gray-300">Forever. No subscriptions. No paywalls.</p>
+                        </div>
+                        <div class="border-t border-gray-700 pt-8">
+                            <h3 class="text-xl text-cyan mb-4 text-center">Launch Timeline</h3>
+                            <ul class="space-y-4 text-gray-300">
+                                <li class="flex justify-between items-center"><span>Beta Testing</span><span class="text-cyan">Q4 2025</span>
+                                </li>
+                                <li class="flex justify-between items-center"><span>Public Launch</span><span class="text-cyan">Q1 2026</span>
+                                </li>
+                                <li class="flex justify-between items-center"><span>iOS & Android</span><span class="text-cyan">Day One</span>
+                                </li>
+                                <li class="flex justify-between items-center"><span>Web Dashboard</span><span class="text-cyan">Q1 2026</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- CTA SECTION -->
+            <section class="py-20 bg-black bg-opacity-30">
+                <div class="container max-w-3xl mx-auto px-6 text-center">
+                    <h2 class="text-4xl sm:text-5xl font-thin tracking-wider mb-6">
+                        Join the Beta </h2>
+                    <p class="text-xl text-gray-300 mb-12">
+                        Be among the first organizers and players to test the platform. Beta starts Q4 2025. </p><a href="/#newsletter" class="cta-primary text-lg px-12 py-5">Get Beta Access</a>
+                    <p class="text-sm text-gray-400 mt-6">No spam. Launch updates only.</p>
+                </div>
+            </section>
+            <!-- FOOTER -->
+            <footer class="relative py-12 border-t border-gray-800 border-opacity-30">
+                <div class="container">
+                    <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
+                            <p class="text-sm text-muted">© 2025. All rights reserved.</p>
+                        </div>
+                        <div class="flex space-x-8"><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
