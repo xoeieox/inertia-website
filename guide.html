@@ -20,7 +20,8 @@
         <!-- NAVIGATION -->
         <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                <div class="flex justify-between items-center h-16">
+                    <a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
                     <div class="hidden md:flex items-center space-x-8"><a href="/" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Home</a><a href="/guide.html" class="text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Guide</a>
                     </div>
                 </div>
@@ -69,7 +70,8 @@
                     <p>Welcome to the Inertia App alpha! You're among the first to test our tournament management platform built specifically for Beyblade X organizers, judges, and players.</p>
                     <h4>What You'll Need</h4>
                     <ul class="step-list">
-                        <li>An <strong>iOS</strong> device (iPhone or iPad) with the TestFlight app installed, <em>or</em> an <strong>Android</strong> device</li>
+                        <li>An <strong>iOS</strong> device (iPhone or iPad) with the TestFlight app installed, <em>or</em> an <strong>Android</strong> device
+                        </li>
                         <li>The invite link we sent you (TestFlight for iOS, APK download for Android)</li>
                         <li>A few minutes to explore before your first tournament</li>
                     </ul>
@@ -158,8 +160,7 @@
                     <h4>Accessing Shōmen (Organizer Controls)</h4>
                     <p>Once in a tournament as organizer, tap <strong>Shōmen</strong> in the bottom bar. This opens your command center with three tabs:</p>
                     <ul class="step-list">
-                        <li>
-                            <strong>Setup</strong> — Tournament settings, QR code for registration, test player generation
+                        <li><strong>Setup</strong> &mdash; Tournament settings, QR code for registration, add players, and test player generation
                         </li>
                         <li>
                             <strong>Management</strong> — Generate rounds according to your format, manually assign matches, judge management
@@ -182,12 +183,15 @@
                         </li>
                     </ul>
                     <h4>Player Registration</h4>
-                    <p>Players can join your tournament by:</p>
+                    <p>There are two ways to add players to your tournament:</p>
                     <ul class="step-list">
-                        <li>Scanning the <strong>QR code</strong> displayed in Shōmen Setup tab
+                        <li>
+                            <strong>Organizer adds players manually</strong> — In Shōmen Setup, tap "Add Player" to enter a player's name and color. This is the most common method since typically only the organizer has the app installed.
                         </li>
-                        <li>Entering their name and choosing a color</li>
-                        <li>Registering their 3-combo deck for 3v3 format</li>
+                        <li>
+                            <strong>Players self-register via QR code</strong> — If players have the app, they can scan the QR code displayed in Shōmen Setup to join and register their own deck.
+                        </li>
+                        <li>For 3v3 format, each player needs 3 combos registered to their deck</li>
                     </ul>
                     <div class="tip-box">
                         <p><strong>Tip:</strong> Use the "4 Players" or "8 Players" buttons in Setup to generate test players with random combos. Great for practice runs!</p>
