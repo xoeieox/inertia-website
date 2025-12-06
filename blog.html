@@ -20,7 +20,8 @@
             <!-- NAVIGATION -->
             <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px);">
                 <div class="max-w-7xl mx-auto px-6">
-                    <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                    <div class="flex justify-between items-center h-16">
+                        <a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
                         <div class="hidden md:flex items-center space-x-8">
                             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                                 <button class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
@@ -29,12 +30,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;">
-                                    <a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a>
-                                    <a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a>
-                                    <a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
                                 </div>
-                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/blog.html" class="text-cyan text-sm tracking-wider uppercase" style="text-decoration: none;">Blog</a><a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">About</a>
+                            </div>
+                            <a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a>
+                            <a href="/blog.html" class="text-cyan text-sm tracking-wider uppercase" style="text-decoration: none;">Blog</a>
+                            <a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">About</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,9 @@
                     <!-- POST 1: December 2025 Open Beta Launch -->
                     <article class="card mb-12" id="december-2025-open-beta-launch">
                         <div class="mb-6">
-                            <div class="flex items-center justify-between mb-4"><span class="text-sm text-gray-400">December 5, 2025</span><span class="inline-block px-3 py-1 bg-gold bg-opacity-20 text-gold text-xs rounded-full">MILESTONE</span>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-gray-400">December 5, 2025</span>
+                                <span class="inline-block px-3 py-1 bg-gold bg-opacity-20 text-gold text-xs rounded-full">MILESTONE</span>
                             </div>
                             <h2 class="text-3xl sm:text-4xl font-thin tracking-wider text-cyan mb-4">December 2025 - Open Beta Launch</h2>
                             <p class="text-lg text-gray-400 mb-6">The Inertia app is now live in open beta. Download it today, run your first tournament, and help us build the data infrastructure for competitive Beyblade.</p>
@@ -80,89 +83,91 @@
                                 After 35 days of intensive development and private testing, the <strong>Inertia app is now available in open beta</strong> on iOS (TestFlight) and Android (APK direct download). </p>
                             <p class="text-gray-300 mb-6 leading-relaxed">
                                 This isn't a preview or a promise. <strong>The app is functional, being used for real tournaments right now, and ready for you to download today.</strong> </p>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Download & Get Started</h3>
-                            <div class="grid md:grid-cols-3 gap-4 mb-8">
-                                <a href="https://testflight.apple.com/join/915pq6mg" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">📱</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">iOS (TestFlight)</h4>
-                                    <p class="text-gray-400 text-sm">Requires iOS 14+</p>
-                                </a>
-                                <a href="https://drive.proton.me/urls/23QXPAM8ZM#5sYHIuFPJ0vt" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">🤖</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">Android (APK)</h4>
-                                    <p class="text-gray-400 text-sm">Direct download</p>
-                                </a>
-                                <a href="https://inertia.cx/guide.html" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">📖</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">Quick Start Guide</h4>
-                                    <p class="text-gray-400 text-sm">Get up to speed</p>
-                                </a>
+                            <div class="grid md:grid-cols-3 gap-4 mb-8"><a href="https://testflight.apple.com/join/915pq6mg" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">📱</div> <h4 class="text-lg text-cyan mb-2 font-light">iOS (TestFlight)</h4> <p class="text-gray-400 text-sm">Requires iOS 14+</p> </a><a href="https://drive.proton.me/urls/23QXPAM8ZM#5sYHIuFPJ0vt" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">🤖</div> <h4 class="text-lg text-cyan mb-2 font-light">Android (APK)</h4> <p class="text-gray-400 text-sm">Direct download</p> </a><a href="https://inertia.cx/guide.html" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">📖</div> <h4 class="text-lg text-cyan mb-2 font-light">Quick Start Guide</h4> <p class="text-gray-400 text-sm">Get up to speed</p> </a>
                             </div>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">What's Ready Now (v1.2.1)</h3>
                             <p class="text-gray-300 mb-4 leading-relaxed">The open beta is <strong>functional and feature-complete for tournament management</strong>. Here's what works today:</p>
-
                             <div class="space-y-4 mb-8">
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Tournament Management (Complete)</h4>
                                     <ul class="space-y-2 text-gray-300 text-sm">
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Fully automated tournament flow:</strong> Swiss pairing, Round Robin, Single Elimination calculated automatically</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Full WBO compliance:</strong> All 6 battle formats supported</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Distributed judging:</strong> Players and judges submit results, organizer sees live queue</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Notifications:</strong> Players and judges notified when matches are ready</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>WBO export automation:</strong> Bout sheets generated automatically (saves ~90 minutes)</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>QR code registration:</strong> No manual roster management</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Format compliance built-in:</strong> Set weight classes, ban lists, battle types - app enforces it</span></li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>Fully automated tournament flow:</strong> Swiss pairing, Round Robin, Single Elimination calculated automatically</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>Full WBO compliance:</strong> All 6 battle formats supported</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>Distributed judging:</strong> Players and judges submit results, organizer sees live queue</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>Notifications:</strong> Players and judges notified when matches are ready</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>WBO export automation:</strong> Bout sheets generated automatically (saves ~90 minutes)</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>QR code registration:</strong> No manual roster management</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">✓</span>
+                                            <span><strong>Format compliance built-in:</strong> Set weight classes, ban lists, battle types - app enforces it</span>
+                                        </li>
                                     </ul>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Cloud Sync</h4>
                                     <p class="text-gray-300 text-sm">Username-only authentication (no email verification). Your combos and battle history backed up automatically.</p>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Momentum Points (Beta Rewards)</h4>
                                     <p class="text-gray-300 text-sm mb-2">Points tracked from day one for running tournaments, creating combos, and practice sessions. UI for viewing coming soon.</p>
                                     <p class="text-gray-300 text-sm"><em>Example: Run a 12-player tournament with 8 logged-in players = 450 points</em></p>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Practice & Arena</h4>
                                     <p class="text-gray-300 text-sm">Free play tracking with Smart Shuffle for intelligent deck rotation. Full edge case support (ring out, launch errors).</p>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Workshop (Combo Builder)</h4>
                                     <p class="text-gray-300 text-sm">Card-based display with voice/text rapid entry. Analytics engine shows physics-based breakdown, not just stats on a box.</p>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-5 rounded-lg border-l-2 border-cyan">
                                     <h4 class="text-lg text-cyan mb-3 font-light">Metascope (Archive)</h4>
                                     <p class="text-gray-300 text-sm">Complete battle history with combo performance tracking.</p>
                                 </div>
                             </div>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Known Issues (Beta Transparency)</h3>
                             <p class="text-gray-300 mb-4 leading-relaxed">This is an <strong>open beta</strong>—functional and being used for real tournaments, but incomplete. Here's what's not finished yet:</p>
                             <ul class="space-y-2 mb-6 text-gray-300">
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>No UI to view momentum points yet (they're tracked, just not visible)</span></li>
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>Metascope shows featured combo stats, but you can't tap other combos to view individual stats yet</span></li>
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>Judges can't modify their decks during tournaments (intentional for integrity, may revisit)</span></li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>No UI to view momentum points yet (they're tracked, just not visible)</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>Metascope shows featured combo stats, but you can't tap other combos to view individual stats yet</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>Judges can't modify their decks during tournaments (intentional for integrity, may revisit)</span>
+                                </li>
                             </ul>
                             <p class="text-gray-300 mb-6 leading-relaxed">We're being upfront about this. Features are being built out based on real-world usage and community feedback.</p>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">What Makes Inertia Different</h3>
                             <p class="text-gray-300 mb-6 leading-relaxed">The Beyblade community already has companion apps. Why build another one?</p>
                             <p class="text-gray-300 mb-4 leading-relaxed"><strong>Because Inertia isn't a companion app.</strong></p>
-
                             <div class="bg-void border border-gray-700 rounded-lg p-6 mb-6">
                                 <p class="text-xl text-cyan font-light mb-4 text-center">"Companion apps help you remember. Inertia helps you understand."</p>
                             </div>
-
                             <p class="text-gray-300 mb-6 leading-relaxed">Here's the difference:</p>
-
                             <div class="overflow-x-auto mb-8">
                                 <table class="w-full text-sm">
                                     <thead>
@@ -199,10 +204,8 @@
                                     </tbody>
                                 </table>
                             </div>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Discovery AND Validation</h3>
                             <p class="text-gray-300 mb-6 leading-relaxed">Inertia serves two complementary purposes:</p>
-
                             <div class="space-y-6 mb-8">
                                 <div class="bg-steel bg-opacity-30 p-6 rounded-lg">
                                     <h4 class="text-xl text-cyan mb-3 font-light">Discovery (Exploration & Testing)</h4>
@@ -211,94 +214,115 @@
                                     <p class="text-gray-300 mb-3">Inertia reveals the hidden physics variables you can actually control—launch angle, RPM, spin decay, combo interactions. You're not just battling, you're discovering what your combos can do, learning why they behave the way they do, testing what's possible.</p>
                                     <p class="text-gray-300 text-sm italic">This is the scientific method in practice. That "wait, what?" moment when invisible physics becomes obvious.</p>
                                 </div>
-
                                 <div class="bg-steel bg-opacity-30 p-6 rounded-lg">
                                     <h4 class="text-xl text-cyan mb-3 font-light">Validation ("Prove It" Infrastructure)</h4>
                                     <p class="text-gray-300 mb-3">The Beyblade community has a problem: <strong>balance debates run on limited data instead of hard evidence.</strong></p>
                                     <p class="text-gray-300 mb-4">Inertia provides the data infrastructure that makes informed community decisions possible:</p>
                                     <ul class="space-y-2 text-gray-300 text-sm">
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Organizers can experiment with formats and track outcomes</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Players can prove what actually works with data, not just tier lists</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Communities can make evidence-based restriction decisions</span></li>
-                                        <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Forum arguments backed by evidence instead of vibes</span></li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">→</span>
+                                            <span>Organizers can experiment with formats and track outcomes</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">→</span>
+                                            <span>Players can prove what actually works with data, not just tier lists</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">→</span>
+                                            <span>Communities can make evidence-based restriction decisions</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-cyan mt-1">→</span>
+                                            <span>Forum arguments backed by evidence instead of vibes</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">The Athletic Journey</h3>
                             <p class="text-gray-300 mb-6 leading-relaxed">Here's another key difference:</p>
-
                             <div class="bg-void border border-gray-700 rounded-lg p-6 mb-6">
                                 <p class="text-xl text-cyan font-light mb-4 text-center">"Companion apps see combos. Inertia sees you."</p>
                             </div>
-
                             <p class="text-gray-300 mb-4 leading-relaxed">Most apps focus on parts and wins. Inertia focuses on <strong>players and how they play</strong>.</p>
                             <p class="text-gray-300 mb-4 leading-relaxed">The question isn't "what's S-Rank?" — it's <strong>"what's S-Rank because of YOU?"</strong></p>
                             <p class="text-gray-300 mb-6 leading-relaxed">When Insight (our launch analyzer hardware) integrates with the app, you'll get recommendations based on YOUR launch technique:</p>
                             <ul class="space-y-2 mb-6 text-gray-300 text-sm italic">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">•</span><span>"Based on your 8° flat launch, Phoenix Wing performs 23% better for you than the average player"</span></li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">•</span><span>"Your launch RPM variance suggests Hexa over Elevate for consistency"</span></li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">•</span>
+                                    <span>"Based on your 8° flat launch, Phoenix Wing performs 23% better for you than the average player"</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">•</span>
+                                    <span>"Your launch RPM variance suggests Hexa over Elevate for consistency"</span>
+                                </li>
                             </ul>
                             <p class="text-gray-300 mb-6 leading-relaxed">This is about understanding your unique strengths and building around them—not just copying the tier list.</p>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Tournament Automation No One Else Has</h3>
                             <p class="text-gray-300 mb-4 leading-relaxed">Beyond the philosophy, Inertia delivers <strong>practical tournament features that don't exist anywhere else</strong>:</p>
                             <ul class="space-y-2 mb-6 text-gray-300">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Fully automated Swiss/Round Robin/Single Elimination pairing</span></li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Distributed judging - organizers can actually play instead of being stuck at a desk</span></li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>WBO export automation saves 90+ minutes per tournament</span></li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Format compliance enforcement (weight classes, ban lists, battle types)</span></li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>QR registration and notifications for players</span></li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Fully automated Swiss/Round Robin/Single Elimination pairing</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Distributed judging - organizers can actually play instead of being stuck at a desk</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>WBO export automation saves 90+ minutes per tournament</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Format compliance enforcement (weight classes, ban lists, battle types)</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>QR registration and notifications for players</span>
+                                </li>
                             </ul>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">What's Next: Insight Hardware Development</h3>
                             <p class="text-gray-300 mb-6 leading-relaxed">Now that the app is in open beta, focus is shifting back to <strong>Insight hardware development</strong> for December 2025.</p>
                             <div class="bg-steel bg-opacity-30 p-6 rounded-lg mb-6">
                                 <h4 class="text-lg text-cyan mb-3 font-light">What's Happening</h4>
                                 <ul class="space-y-2 text-gray-300 text-sm">
-                                    <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Working with an industrial designer for production-ready enclosure design</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>V2 PCB redesign for manufacturing</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Component improvements for sensor accuracy and power management</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-cyan mt-1">→</span><span>Moving from prototype to manufacturable product</span></li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-cyan mt-1">→</span>
+                                        <span>Working with an industrial designer for production-ready enclosure design</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-cyan mt-1">→</span>
+                                        <span>V2 PCB redesign for manufacturing</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-cyan mt-1">→</span>
+                                        <span>Component improvements for sensor accuracy and power management</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-cyan mt-1">→</span>
+                                        <span>Moving from prototype to manufacturable product</span>
+                                    </li>
                                 </ul>
                             </div>
                             <p class="text-gray-300 mb-6 leading-relaxed">App updates will continue, but at a slower pace while Insight gets pushed toward production readiness.</p>
-
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">We Need Your Feedback</h3>
                             <p class="text-gray-300 mb-4 leading-relaxed">This is an open beta. We're building this <strong>with</strong> the community, not just for it.</p>
                             <p class="text-gray-300 mb-6 leading-relaxed">Run a tournament. Test the features. Find the bugs. Tell us what's broken and what's brilliant.</p>
-
-                            <div class="grid md:grid-cols-3 gap-4 mb-8">
-                                <a href="https://discord.gg/XGu5NkXE" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">💬</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">Discord</h4>
-                                    <p class="text-gray-400 text-sm">Join the community</p>
-                                </a>
-                                <a href="https://github.com/xoeieox/inertia-app/issues" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">🐛</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">GitHub Issues</h4>
-                                    <p class="text-gray-400 text-sm">Report bugs</p>
-                                </a>
-                                <a href="mailto:erah@inertia.cx" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center">
-                                    <div class="text-3xl mb-3">✉️</div>
-                                    <h4 class="text-lg text-cyan mb-2 font-light">Email</h4>
-                                    <p class="text-gray-400 text-sm">erah@inertia.cx</p>
-                                </a>
+                            <div class="grid md:grid-cols-3 gap-4 mb-8"><a href="https://discord.gg/XGu5NkXE" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">💬</div> <h4 class="text-lg text-cyan mb-2 font-light">Discord</h4> <p class="text-gray-400 text-sm">Join the community</p> </a><a href="https://github.com/xoeieox/inertia-app/issues" target="_blank" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">🐛</div> <h4 class="text-lg text-cyan mb-2 font-light">GitHub Issues</h4> <p class="text-gray-400 text-sm">Report bugs</p> </a><a href="mailto:erah@inertia.cx" class="block bg-steel bg-opacity-50 p-6 rounded-lg border border-cyan-500 border-opacity-30 hover:border-opacity-60 transition-all text-center"> <div class="text-3xl mb-3">✉️</div> <h4 class="text-lg text-cyan mb-2 font-light">Email</h4> <p class="text-gray-400 text-sm">erah@inertia.cx</p> </a>
                             </div>
-
                             <div class="border-t border-gray-700 pt-6 mt-8">
-                                <p class="text-center text-gray-300 mb-4">
-                                    <strong>The beta is live. The data starts now. Let's prove it's a sport.</strong> </p>
+                                <p class="text-center text-gray-300 mb-4"> <strong>The beta is live. The data starts now. Let's prove it's a sport.</strong> </p>
                                 <p class="text-center text-gray-400 text-sm">
                                     Want weekly updates? <a href="#newsletter" class="text-cyan hover:underline">Subscribe to our newsletter</a> </p>
                             </div>
                         </div>
                     </article>
-
                     <!-- POST 2: October 2025 Momentum Campaign -->
                     <article class="card mb-12" id="october-2025-momentum-campaign">
                         <div class="mb-6">
-                            <div class="flex items-center justify-between mb-4"><span class="text-sm text-gray-400">October 20, 2025</span><span class="inline-block px-3 py-1 bg-gold bg-opacity-20 text-gold text-xs rounded-full">MILESTONE</span>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-gray-400">October 20, 2025</span>
+                                <span class="inline-block px-3 py-1 bg-gold bg-opacity-20 text-gold text-xs rounded-full">MILESTONE</span>
                             </div>
                             <h2 class="text-3xl sm:text-4xl font-thin tracking-wider text-cyan mb-4">October 2025 - Momentum Campaign Launch</h2>
                             <p class="text-lg text-gray-400 mb-6">Public demonstrations of Insight and Axis prototypes. Community reception and what's next.</p>
@@ -316,14 +340,16 @@
                                     <p class="text-gray-300 text-sm mb-4">Real-time RPM tracking, launch angle measurement (IMU), and Bluetooth sync to the Inertia App. Compact attachment form factor with live LCD feedback.</p>
                                     <div class="relative mb-4" style="padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.2);">
                                         <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Xxw90HHX1TY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div><a href="/products/insight.html" class="text-cyan text-sm hover:underline">Learn more about Insight →</a>
+                                    </div>
+                                    <a href="/products/insight.html" class="text-cyan text-sm hover:underline">Learn more about Insight →</a>
                                 </div>
                                 <div class="bg-steel bg-opacity-50 p-6 rounded-lg border border-gray-700">
                                     <h4 class="text-xl text-cyan mb-3 font-light">Axis Computer Vision</h4>
                                     <p class="text-gray-300 text-sm mb-4">Real-time battle detection, win classification (Spin Finish, KO, Burst), and automated clip generation. Tournament-ready accuracy for organizers.</p>
                                     <div class="relative mb-4" style="padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.2);">
                                         <img src="assets/images/AxisScorpioWins.gif" alt="Axis computer vision detecting Beyblade wins" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"/>
-                                    </div><a href="https://www.reddit.com/r/BeybladeX/comments/1obwcbf/computer_vision_detecting_beyblade_wins/" target="_blank" class="text-cyan text-sm hover:underline">See Reddit demo →</a>
+                                    </div>
+                                    <a href="https://www.reddit.com/r/BeybladeX/comments/1obwcbf/computer_vision_detecting_beyblade_wins/" target="_blank" class="text-cyan text-sm hover:underline">See Reddit demo →</a>
                                 </div>
                             </div>
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Inertia App Demo</h3>
@@ -331,18 +357,27 @@
                                 We also showcased the <strong>Inertia App</strong>—the platform that connects Insight, Axis, and tournament infrastructure. Voice input for match recording, Swiss pairing automation, and real-time brackets. </p>
                             <div class="relative mb-6" style="padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.2);">
                                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/q4X9s6LcCNs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div><a href="/products/app.html" class="text-cyan hover:underline">Learn more about the Inertia App →</a>
+                            </div>
+                            <a href="/products/app.html" class="text-cyan hover:underline">Learn more about the Inertia App →</a>
                             <h3 class="text-2xl font-light text-cyan mb-4 mt-8">Community Reception</h3>
                             <p class="text-gray-300 mb-4 leading-relaxed">
                                 The response from the competitive Beyblade community exceeded expectations: </p>
                             <ul class="list-none space-y-2 mb-6">
-                                <li class="flex items-start gap-3 text-gray-300"><span class="text-cyan mt-1">✓</span><span><strong>1.2k+ views</strong> on Reddit demonstrations within the first week</span>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>1.2k+ views</strong> on Reddit demonstrations within the first week</span>
                                 </li>
-                                <li class="flex items-start gap-3 text-gray-300"><span class="text-cyan mt-1">✓</span><span><strong>Positive engagement</strong> from competitive players on WBO Forums</span>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Positive engagement</strong> from competitive players on WBO Forums</span>
                                 </li>
-                                <li class="flex items-start gap-3 text-gray-300"><span class="text-cyan mt-1">✓</span><span><strong>Tournament organizers</strong> reaching out to join beta programs</span>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Tournament organizers</strong> reaching out to join beta programs</span>
                                 </li>
-                                <li class="flex items-start gap-3 text-gray-300"><span class="text-cyan mt-1">✓</span><span><strong>Feature requests</strong> and integration ideas from the community</span>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Feature requests</strong> and integration ideas from the community</span>
                                 </li>
                             </ul>
                             <p class="text-gray-300 mb-6 leading-relaxed">
@@ -385,7 +420,8 @@
                     <div class="card text-center py-12 bg-steel bg-opacity-30">
                         <div class="text-4xl text-cyan mb-4 opacity-40">◈</div>
                         <h3 class="text-xl text-gray-400 mb-3 font-light">More Milestones Coming Soon</h3>
-                        <p class="text-gray-500 mb-6">Next update: Insight hardware development progress</p><a href="#newsletter" class="cta-secondary px-8 py-3 inline-block">Get Notified</a>
+                        <p class="text-gray-500 mb-6">Next update: Insight hardware development progress</p>
+                        <a href="#newsletter" class="cta-secondary px-8 py-3 inline-block">Get Notified</a>
                     </div>
                 </div>
             </section>
@@ -397,10 +433,7 @@
                             <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
                             <p class="text-sm text-muted">© 2025. All rights reserved.</p>
                         </div>
-                        <div class="flex space-x-8">
-                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a>
-                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a>
-                            <a href="/about.html" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                        <div class="flex space-x-8"><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a><a href="/about.html" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
                         </div>
                     </div>
                 </div>
