@@ -20,8 +20,7 @@
             <!-- NAVIGATION -->
             <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px);">
                 <div class="max-w-7xl mx-auto px-6">
-                    <div class="flex justify-between items-center h-16">
-                        <a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                    <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
                         <div class="hidden md:flex items-center space-x-8">
                             <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                                 <button class="text-cyan text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
@@ -30,12 +29,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Inertia App</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;">
+                                    <a href="/products/app.html" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Inertia App</a>
+                                    <a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a>
+                                    <a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
                                 </div>
-                            </div>
-                            <a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a>
-                            <a href="/blog.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Blog</a>
-                            <a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">About</a>
+                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/blog.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Blog</a><a href="/about.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">About</a>
                         </div>
                     </div>
                 </div>
@@ -52,9 +51,12 @@
                         Discovery. Validation. Tournament Infrastructure. </p>
                     <p class="text-lg text-gray-300 text-opacity-80 max-w-2xl mx-auto mb-12" x-show="loaded" x-transition>
                         Test your theories. Run automated tournaments. Track your journey. Build the data that proves it's a sport. Open beta available now. </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center" x-show="loaded" x-transition><a href="#download" class="cta-primary text-lg px-10 py-4">Download Now</a><a href="/platform.html" class="cta-secondary text-lg px-10 py-4">Explore Platform</a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center" x-show="loaded" x-transition>
+                        <a href="#download" class="cta-primary text-lg px-10 py-4">Download Now</a>
+                        <a href="/platform.html" class="cta-secondary text-lg px-10 py-4">Explore Platform</a>
                     </div>
-                    <div class="mt-8 text-sm text-gray-400"><span class="inline-block px-4 py-2 bg-gold bg-opacity-20 text-gold rounded-full">Open Beta • FREE Forever</span>
+                    <div class="mt-8 text-sm text-gray-400">
+                        <span class="inline-block px-4 py-2 bg-gold bg-opacity-20 text-gold rounded-full">Open Beta • FREE Forever</span>
                     </div>
                 </div>
             </section>
@@ -62,39 +64,12 @@
             <section id="download" class="py-20 bg-black bg-opacity-30">
                 <div class="container max-w-4xl mx-auto px-6">
                     <h2 class="text-3xl sm:text-4xl font-thin tracking-wider mb-12 text-center">Download & Get Started</h2>
-                    <div class="grid md:grid-cols-3 gap-6 mb-12">
-                        <a href="https://testflight.apple.com/join/915pq6mg" target="_blank" class="card text-center hover:border-cyan transition-all">
-                            <div class="text-5xl mb-4">📱</div>
-                            <h3 class="text-xl text-cyan mb-3 font-light">iOS (TestFlight)</h3>
-                            <p class="text-gray-400 text-sm">Requires iOS 14+</p>
-                        </a>
-                        <a href="https://drive.proton.me/urls/23QXPAM8ZM#5sYHIuFPJ0vt" target="_blank" class="card text-center hover:border-cyan transition-all">
-                            <div class="text-5xl mb-4">🤖</div>
-                            <h3 class="text-xl text-cyan mb-3 font-light">Android (APK)</h3>
-                            <p class="text-gray-400 text-sm">Direct download</p>
-                        </a>
-                        <a href="https://inertia.cx/guide.html" target="_blank" class="card text-center hover:border-cyan transition-all">
-                            <div class="text-5xl mb-4">📖</div>
-                            <h3 class="text-xl text-cyan mb-3 font-light">Quick Start Guide</h3>
-                            <p class="text-gray-400 text-sm">Get up to speed fast</p>
-                        </a>
+                    <div class="grid md:grid-cols-3 gap-6 mb-12"><a href="https://testflight.apple.com/join/915pq6mg" target="_blank" class="card text-center hover:border-cyan transition-all"> <div class="text-5xl mb-4">📱</div> <h3 class="text-xl text-cyan mb-3 font-light">iOS (TestFlight)</h3> <p class="text-gray-400 text-sm">Requires iOS 14+</p> </a><a href="https://drive.proton.me/urls/23QXPAM8ZM#5sYHIuFPJ0vt" target="_blank" class="card text-center hover:border-cyan transition-all"> <div class="text-5xl mb-4">🤖</div> <h3 class="text-xl text-cyan mb-3 font-light">Android (APK)</h3> <p class="text-gray-400 text-sm">Direct download</p> </a><a href="https://inertia.cx/guide.html" target="_blank" class="card text-center hover:border-cyan transition-all"> <div class="text-5xl mb-4">📖</div> <h3 class="text-xl text-cyan mb-3 font-light">Quick Start Guide</h3> <p class="text-gray-400 text-sm">Get up to speed fast</p> </a>
                     </div>
                     <div class="card max-w-2xl mx-auto">
                         <h3 class="text-xl text-cyan mb-4 font-light text-center">Feedback Channels</h3>
                         <p class="text-gray-300 mb-6 text-center">This is an open beta. We're building this with the community. Your feedback shapes the product.</p>
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <a href="https://discord.gg/XGu5NkXE" target="_blank" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all">
-                                <div class="text-2xl mb-2">💬</div>
-                                <div class="text-sm text-cyan">Discord</div>
-                            </a>
-                            <a href="https://github.com/xoeieox/inertia-app/issues" target="_blank" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all">
-                                <div class="text-2xl mb-2">🐛</div>
-                                <div class="text-sm text-cyan">GitHub Issues</div>
-                            </a>
-                            <a href="mailto:erah@inertia.cx" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all">
-                                <div class="text-2xl mb-2">✉️</div>
-                                <div class="text-sm text-cyan">Email</div>
-                            </a>
+                        <div class="grid md:grid-cols-3 gap-4"><a href="https://discord.gg/XGu5NkXE" target="_blank" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all"> <div class="text-2xl mb-2">💬</div> <div class="text-sm text-cyan">Discord</div> </a><a href="https://github.com/xoeieox/inertia-app/issues" target="_blank" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all"> <div class="text-2xl mb-2">🐛</div> <div class="text-sm text-cyan">GitHub Issues</div> </a><a href="mailto:erah@inertia.cx" class="text-center p-4 bg-steel bg-opacity-30 rounded hover:bg-opacity-50 transition-all"> <div class="text-2xl mb-2">✉️</div> <div class="text-sm text-cyan">Email</div> </a>
                         </div>
                     </div>
                 </div>
@@ -107,26 +82,42 @@
                         <div class="card">
                             <h3 class="text-xl text-cyan mb-4 font-light">For Organizers</h3>
                             <ul class="space-y-3 text-gray-300">
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>90+ minutes manually managing brackets and pairings</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>90+ minutes manually managing brackets and pairings</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Paper scoring prone to errors and disputes</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>Paper scoring prone to errors and disputes</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No automated swiss pairings or tiebreakers</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>No automated swiss pairings or tiebreakers</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Players constantly asking "When's my next match?"</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>Players constantly asking "When's my next match?"</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="card">
                             <h3 class="text-xl text-cyan mb-4 font-light">For Players</h3>
                             <ul class="space-y-3 text-gray-300">
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No visibility into rankings or next opponents</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>No visibility into rankings or next opponents</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Battle history scattered across notebooks and photos</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>Battle history scattered across notebooks and photos</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>No way to track personal progress over time</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>No way to track personal progress over time</span>
                                 </li>
-                                <li class="flex items-center gap-3"><span class="text-cyan">•</span><span>Hard to prove skill vs. luck without data</span>
+                                <li class="flex items-center gap-3">
+                                    <span class="text-cyan">•</span>
+                                    <span>Hard to prove skill vs. luck without data</span>
                                 </li>
                             </ul>
                         </div>
@@ -148,15 +139,25 @@
                             <h3 class="text-xl text-cyan mb-4 font-light">Discovery Features</h3>
                             <p class="text-gray-400 text-sm mb-4">Practice, exploration, and testing</p>
                             <ul class="space-y-3 text-gray-300 text-sm">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Workshop:</strong> Combo builder with physics-based analytics (not just stats on a box)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Workshop:</strong> Combo builder with physics-based analytics (not just stats on a box)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Practice & Arena:</strong> Free play tracking with Smart Shuffle for deck rotation</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Practice & Arena:</strong> Free play tracking with Smart Shuffle for deck rotation</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Metascope:</strong> Complete battle history and combo performance tracking</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Metascope:</strong> Complete battle history and combo performance tracking</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Voice/Text Input:</strong> Rapid combo entry for testing theories quickly</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Voice/Text Input:</strong> Rapid combo entry for testing theories quickly</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Edge Case Handling:</strong> Ring outs, launch errors, all tracked properly</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Edge Case Handling:</strong> Ring outs, launch errors, all tracked properly</span>
                                 </li>
                             </ul>
                         </div>
@@ -164,17 +165,29 @@
                             <h3 class="text-xl text-cyan mb-4 font-light">Validation Features</h3>
                             <p class="text-gray-400 text-sm mb-4">Tournament automation and data infrastructure</p>
                             <ul class="space-y-3 text-gray-300 text-sm">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Full Automation:</strong> Swiss, Round Robin, Single Elim calculated automatically</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Full Automation:</strong> Swiss, Round Robin, Single Elim calculated automatically</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>WBO Compliance:</strong> All 6 battle formats supported</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>WBO Compliance:</strong> All 6 battle formats supported</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Distributed Judging:</strong> Organizers can actually play instead of managing brackets</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Distributed Judging:</strong> Organizers can actually play instead of managing brackets</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>WBO Export:</strong> Bout sheets generated automatically (saves 90 minutes)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>WBO Export:</strong> Bout sheets generated automatically (saves 90 minutes)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>Format Enforcement:</strong> Weight classes, ban lists, battle types—app enforces compliance</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>Format Enforcement:</strong> Weight classes, ban lists, battle types—app enforces compliance</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span><strong>QR Registration:</strong> No manual roster management</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span><strong>QR Registration:</strong> No manual roster management</span>
                                 </li>
                             </ul>
                         </div>
@@ -203,9 +216,13 @@
                             <p class="text-gray-300 mb-4">
                                 When Insight (our launch analyzer hardware) integrates with the app, you'll get recommendations based on YOUR launch technique: </p>
                             <ul class="space-y-2 text-gray-300 text-sm italic">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">•</span><span>"Based on your 8° flat launch, Phoenix Wing performs 23% better for you than the average player"</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">•</span>
+                                    <span>"Based on your 8° flat launch, Phoenix Wing performs 23% better for you than the average player"</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">•</span><span>"Your launch RPM variance suggests Hexa over Elevate for consistency"</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">•</span>
+                                    <span>"Your launch RPM variance suggests Hexa over Elevate for consistency"</span>
                                 </li>
                             </ul>
                         </div>
@@ -247,28 +264,46 @@
                         <div class="card">
                             <h3 class="text-xl text-cyan mb-4 font-light">What's Working Now</h3>
                             <ul class="space-y-2 text-gray-300 text-sm">
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Tournament management (Swiss, Round Robin, Single Elim)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Tournament management (Swiss, Round Robin, Single Elim)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Cloud sync (username-only auth)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Cloud sync (username-only auth)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Momentum Points tracking (backend only)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Momentum Points tracking (backend only)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Practice sessions and Arena free play</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Practice sessions and Arena free play</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Workshop combo builder</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Workshop combo builder</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-cyan mt-1">✓</span><span>Metascope battle history</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan mt-1">✓</span>
+                                    <span>Metascope battle history</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="card">
                             <h3 class="text-xl text-cyan mb-4 font-light">Known Issues</h3>
                             <ul class="space-y-2 text-gray-300 text-sm">
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>No UI to view momentum points yet (they're tracked, just not visible)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>No UI to view momentum points yet (they're tracked, just not visible)</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>Metascope shows featured combo stats, but you can't tap other combos to view individual stats yet</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>Metascope shows featured combo stats, but you can't tap other combos to view individual stats yet</span>
                                 </li>
-                                <li class="flex items-start gap-2"><span class="text-gray-500 mt-1">•</span><span>Judges can't modify their decks during tournaments (intentional for integrity, may revisit)</span>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-gray-500 mt-1">•</span>
+                                    <span>Judges can't modify their decks during tournaments (intentional for integrity, may revisit)</span>
                                 </li>
                             </ul>
                             <p class="text-gray-400 text-sm mt-4 italic">
@@ -289,13 +324,21 @@
                         <div class="border-t border-gray-700 pt-8">
                             <h3 class="text-xl text-cyan mb-4 text-center">Current Status</h3>
                             <ul class="space-y-4 text-gray-300">
-                                <li class="flex justify-between items-center"><span>Open Beta</span><span class="text-cyan">Live Now (v1.2.1)</span>
+                                <li class="flex justify-between items-center">
+                                    <span>Open Beta</span>
+                                    <span class="text-cyan">Live Now (v1.2.1)</span>
                                 </li>
-                                <li class="flex justify-between items-center"><span>iOS & Android</span><span class="text-cyan">Available Today</span>
+                                <li class="flex justify-between items-center">
+                                    <span>iOS & Android</span>
+                                    <span class="text-cyan">Available Today</span>
                                 </li>
-                                <li class="flex justify-between items-center"><span>Tournament Features</span><span class="text-cyan">Complete</span>
+                                <li class="flex justify-between items-center">
+                                    <span>Tournament Features</span>
+                                    <span class="text-cyan">Complete</span>
                                 </li>
-                                <li class="flex justify-between items-center"><span>Web Dashboard</span><span class="text-cyan">Coming Q1 2026</span>
+                                <li class="flex justify-between items-center">
+                                    <span>Web Dashboard</span>
+                                    <span class="text-cyan">Coming Q1 2026</span>
                                 </li>
                             </ul>
                         </div>
@@ -316,7 +359,8 @@
                     <h2 class="text-4xl sm:text-5xl font-thin tracking-wider mb-6">
                         Download the Beta Today </h2>
                     <p class="text-xl text-gray-300 mb-12">
-                        The open beta is live. Run your first tournament. Test your theories. Help us build the data infrastructure for competitive Beyblade. </p><a href="#download" class="cta-primary text-lg px-12 py-5">Download Now</a>
+                        The open beta is live. Run your first tournament. Test your theories. Help us build the data infrastructure for competitive Beyblade. </p>
+                    <a href="#download" class="cta-primary text-lg px-12 py-5">Download Now</a>
                     <p class="text-sm text-gray-400 mt-6">Free forever. No spam. No subscriptions.</p>
                 </div>
             </section>
@@ -328,7 +372,10 @@
                             <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
                             <p class="text-sm text-muted">© 2025. All rights reserved.</p>
                         </div>
-                        <div class="flex space-x-8"><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                        <div class="flex space-x-8">
+                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a>
+                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a>
+                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
                         </div>
                     </div>
                 </div>
