@@ -270,11 +270,13 @@
 
   <script>
     // Inertia OBS Match Overlay
-    // URL: inertia.cx/overlay.html?tournament_id=X&table=Y
+    // URL: inertia.cx/overlay.html?id=X&table=Y
 
     const CONFIG = {
       SUPABASE_URL: 'https://puucaluhlwdfphsiznrx.supabase.co',
-      TOURNAMENT_ID: new URLSearchParams(location.search).get('tournament_id'),
+      // Accept both 'id' (preferred, matches bracket.html) and 'tournament_id' (legacy)
+      TOURNAMENT_ID: new URLSearchParams(location.search).get('id')
+                  || new URLSearchParams(location.search).get('tournament_id'),
       TABLE: new URLSearchParams(location.search).get('table') || '1',
       REFRESH_INTERVAL: 250, // 4x per second for snappy updates
     };
