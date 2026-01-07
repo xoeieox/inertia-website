@@ -401,11 +401,12 @@
             const data = await response.json();
             this.tournament = data.tournament;
 
-            // The Edge Function returns tables (grouped by table),
-            // but for bracket we need all matches
-            // For now, we'll work with what we have
-            if (data.tables && data.tables.length > 0) {
-              // Convert tables to matches format
+            // Use all_matches array which includes ALL matches (byes, unassigned, etc.)
+            // This is needed for bracket viewer to show the full bracket structure
+            if (data.all_matches && data.all_matches.length > 0) {
+              this.matches = data.all_matches;
+            } else if (data.tables && data.tables.length > 0) {
+              // Fallback to tables for backward compatibility
               this.matches = data.tables.map(t => ({
                 id: t.match_id,
                 round: t.round,
@@ -448,7 +449,9 @@
         },
 
         getRoundLabel(roundNum) {
-          const totalRounds = Object.keys(this.matchesByRound).length;
+          // Use total_rounds from API (calculated from bracket size)
+          // Fallback to counting visible rounds for backward compatibility
+          const totalRounds = this.tournament?.total_rounds || Object.keys(this.matchesByRound).length;
           const round = parseInt(roundNum);
 
           if (round === totalRounds) return 'Finals';
