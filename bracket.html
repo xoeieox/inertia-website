@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inertia Bracket Viewer</title>
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    /* Bracket Viewer Styles */
+    :root {
+      --deck-attack: #2196F3;
+      --deck-defense: #4CAF50;
+      --deck-stamina: #FBC02D;
+      --deck-balance: #F44336;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* Header */
+    .bracket-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tournament-name {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .tournament-info {
+      opacity: 0.6;
+      font-size: 0.875rem;
+    }
+
+    .live-badge {
+      display: inline-block;
+      background: rgba(244, 67, 54, 0.2);
+      color: #f44336;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      animation: pulse-live 2s ease-in-out infinite;
+      margin-left: 1rem;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Bracket Container */
+    .bracket-container {
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 2rem 0;
+    }
+
+    .bracket {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* Round Column */
+    .round {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 1rem;
+      min-width: 220px;
+    }
+
+    .round-label {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    }
+
+    /* Match Card */
+    .match {
+      position: relative;
+      background: var(--steel);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .match.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .match.pending {
+      opacity: 0.6;
+    }
+
+    /* Player Row */
+    .player {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      gap: 0.75rem;
+      border-left: 4px solid transparent;
+    }
+
+    .player:first-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .player.winner {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    .player.loser {
+      opacity: 0.5;
+    }
+
+    /* Deck type color - left border */
+    .player.deck-attack { border-left-color: var(--deck-attack); }
+    .player.deck-defense { border-left-color: var(--deck-defense); }
+    .player.deck-stamina { border-left-color: var(--deck-stamina); }
+    .player.deck-balance { border-left-color: var(--deck-balance); }
+
+    .seed {
+      font-size: 0.75rem;
+      opacity: 0.4;
+      min-width: 1.5rem;
+    }
+
+    .name {
+      flex: 1;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .score {
+      font-weight: bold;
+      font-size: 1.1rem;
+      min-width: 1.5rem;
+      text-align: center;
+    }
+
+    .player.winner .score {
+      color: var(--gold);
+    }
+
+    /* Connector Lines */
+    .match::after {
+      content: '';
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      width: 1.5rem;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .round:last-child .match::after {
+      display: none;
+    }
+
+    /* Vertical connectors for matches that feed into next round */
+    .match-pair {
+      position: relative;
+    }
+
+    .match-pair::after {
+      content: '';
+      position: absolute;
+      right: -1.5rem;
+      top: 25%;
+      width: 2px;
+      height: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Loading State */
+    .loading-state {
+      text-align: center;
+      padding: 4rem;
+      opacity: 0.6;
+    }
+
+    .loading-state .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Error State */
+    .error-state {
+      text-align: center;
+      padding: 4rem;
+      color: #ff6b6b;
+    }
+
+    /* Empty bracket placeholder */
+    .player.tbd {
+      opacity: 0.3;
+    }
+
+    .player.tbd .name {
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .bracket {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .round {
+        width: 100%;
+      }
+
+      .match::after,
+      .match-pair::after {
+        display: none;
+      }
+    }
+
+    /* TV Mode - larger text */
+    .tv-mode .tournament-name {
+      font-size: 3rem;
+    }
+
+    .tv-mode .player .name {
+      font-size: 1.25rem;
+    }
+
+    .tv-mode .player .score {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body x-data="bracketViewer()" x-init="init()">
+
+  <!-- Header -->
+  <header class="bracket-header">
+    <h1 class="tournament-name">
+      <span x-text="tournament?.name || 'Loading...'"></span>
+      <span class="live-badge" x-show="isLive">LIVE</span>
+    </h1>
+    <p class="tournament-info">
+      <span x-text="formatLabel"></span>
+      <template x-if="tournament">
+        <span> &bull; Round <span x-text="tournament.current_round"></span></span>
+      </template>
+    </p>
+  </header>
+
+  <!-- Loading State -->
+  <div class="loading-state" x-show="loading">
+    <div class="spinner"></div>
+    <p>Loading bracket...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-state" x-show="error">
+    <p x-text="error"></p>
+  </div>
+
+  <!-- Bracket -->
+  <div class="bracket-container" x-show="!loading && !error">
+    <div class="bracket">
+      <template x-for="(roundMatches, roundNum) in matchesByRound" :key="roundNum">
+        <div class="round">
+          <div class="round-label" x-text="getRoundLabel(roundNum)"></div>
+          <template x-for="match in roundMatches" :key="match.id">
+            <div class="match"
+                 :class="{
+                   'active': match.status === 'in_progress',
+                   'pending': match.status === 'pending'
+                 }">
+              <!-- Player 1 -->
+              <div class="player"
+                   :class="[
+                     getPlayerClasses(match, match.player1_id),
+                     getDeckTypeClass(match.player1_combo)
+                   ]">
+                <span class="seed" x-text="match.player1_seed || ''"></span>
+                <span class="name" x-text="match.player1_name || 'TBD'"></span>
+                <span class="score" x-text="match.player1_score ?? '-'"></span>
+              </div>
+              <!-- Player 2 -->
+              <div class="player"
+                   :class="[
+                     getPlayerClasses(match, match.player2_id),
+                     getDeckTypeClass(match.player2_combo)
+                   ]">
+                <span class="seed" x-text="match.player2_seed || ''"></span>
+                <span class="name" x-text="match.player2_name || 'TBD'"></span>
+                <span class="score" x-text="match.player2_score ?? '-'"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <script src="js/deck-type-colors.js"></script>
+  <script>
+    // Inertia Bracket Viewer
+    // URL: inertia.cx/bracket.html?id=X
+
+    const SUPABASE_URL = 'https://puucaluhlwdfphsiznrx.supabase.co';
+    const API_URL = `${SUPABASE_URL}/functions/v1/tournament-live`;
+
+    function bracketViewer() {
+      return {
+        tournament: null,
+        matches: [],
+        participants: [],
+        loading: true,
+        error: null,
+
+        get tournamentId() {
+          return new URLSearchParams(location.search).get('id');
+        },
+
+        get isLive() {
+          return this.matches.some(m => m.status === 'in_progress');
+        },
+
+        get formatLabel() {
+          if (!this.tournament) return '';
+          const format = this.tournament.format || '';
+          const labels = {
+            'single_elimination': 'Single Elimination',
+            'double_elimination': 'Double Elimination',
+            'swiss': 'Swiss',
+            'round_robin': 'Round Robin'
+          };
+          return labels[format] || format;
+        },
+
+        get matchesByRound() {
+          const grouped = {};
+          for (const match of this.matches) {
+            const round = match.round || 1;
+            if (!grouped[round]) grouped[round] = [];
+            grouped[round].push(match);
+          }
+          // Sort matches within each round by match order/id
+          for (const round in grouped) {
+            grouped[round].sort((a, b) => {
+              // Sort by table_number or match order
+              return (a.table_number || a.id) > (b.table_number || b.id) ? 1 : -1;
+            });
+          }
+          return grouped;
+        },
+
+        async init() {
+          if (!this.tournamentId) {
+            this.error = 'Missing tournament ID. Use ?id=YOUR_TOURNAMENT_ID';
+            this.loading = false;
+            return;
+          }
+
+          await this.fetchBracket();
+
+          // Auto-refresh every second
+          setInterval(() => this.fetchBracket(), 1000);
+        },
+
+        async fetchBracket() {
+          try {
+            // First try the Edge Function
+            const response = await fetch(`${API_URL}?id=${this.tournamentId}`);
+
+            if (!response.ok) {
+              const err = await response.json();
+              throw new Error(err.error || `HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            this.tournament = data.tournament;
+
+            // The Edge Function returns tables (grouped by table),
+            // but for bracket we need all matches
+            // For now, we'll work with what we have
+            if (data.tables && data.tables.length > 0) {
+              // Convert tables to matches format
+              this.matches = data.tables.map(t => ({
+                id: t.match_id,
+                round: t.round,
+                status: t.status,
+                table_number: t.table_number,
+                player1_id: t.left_player.id,
+                player1_name: t.left_player.name,
+                player1_score: t.left_player.score,
+                player1_combo: t.left_player.combo,
+                player2_id: t.right_player.id,
+                player2_name: t.right_player.name,
+                player2_score: t.right_player.score,
+                player2_combo: t.right_player.combo,
+                winner_id: t.winner_id
+              }));
+            }
+
+            // Also store standings for reference
+            this.participants = data.standings || [];
+
+            this.loading = false;
+            this.error = null;
+          } catch (err) {
+            console.error('Fetch error:', err);
+            this.error = err.message;
+            this.loading = false;
+          }
+        },
+
+        getPlayerClasses(match, playerId) {
+          if (!match.winner_id) return '';
+          if (match.winner_id === playerId) return 'winner';
+          return 'loser';
+        },
+
+        getDeckTypeClass(combo) {
+          if (!combo || typeof calculateDeckType !== 'function') return '';
+          const type = calculateDeckType(combo);
+          return `deck-${type}`;
+        },
+
+        getRoundLabel(roundNum) {
+          const totalRounds = Object.keys(this.matchesByRound).length;
+          const round = parseInt(roundNum);
+
+          if (round === totalRounds) return 'Finals';
+          if (round === totalRounds - 1) return 'Semifinals';
+          if (round === totalRounds - 2) return 'Quarterfinals';
+          return `Round ${round}`;
+        }
+      };
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inertia Match Overlay</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: transparent;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .overlay-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      padding: 0 20px 20px 20px;
+    }
+
+    .player-panel {
+      background: rgba(10, 10, 10, 0.95); /* --void with alpha */
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-width: 280px;
+    }
+
+    .player-panel.left {
+      flex-direction: row;
+    }
+
+    .player-panel.right {
+      flex-direction: row-reverse;
+    }
+
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .player-panel.left .player-info {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .player-panel.right .player-info {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .combo {
+      font-size: 13px;
+      opacity: 0.7;
+      font-weight: 400;
+    }
+
+    .stadium-side {
+      font-size: 10px;
+      opacity: 0.4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* Score section - dots + win history */
+    .score-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .player-panel.left .score-section {
+      align-items: flex-end;
+    }
+
+    .player-panel.right .score-section {
+      align-items: flex-start;
+    }
+
+    .score-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .player-panel.right .score-dots {
+      flex-direction: row-reverse;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .dot.filled {
+      background: white;
+      border-color: white;
+      box-shadow: 0 0 8px rgba(255,255,255,0.5);
+    }
+
+    /* Win history - how they got their points */
+    .win-history {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-size: 10px;
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .player-panel.right .win-history {
+      flex-direction: row-reverse;
+    }
+
+    .finish-tag {
+      padding: 2px 5px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.1);
+      font-size: 9px;
+    }
+
+    .finish-tag.spin { color: #00E5FF; } /* --cyan */
+    .finish-tag.burst { color: #ff8a65; }
+    .finish-tag.over { color: #81c784; }
+    .finish-tag.xtreme { color: #ba68c8; }
+
+    /* Winner highlight */
+    .player-panel.winner {
+      border: 2px solid #FFD700; /* --gold */
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .player-panel.winner .name {
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    .player-panel.loser {
+      opacity: 0.5;
+    }
+
+    /* Match complete indicator */
+    .round-indicator.complete {
+      background: rgba(76, 175, 80, 0.9);
+      color: white;
+    }
+
+    /* Round indicator - bottom center */
+    .round-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 10, 0.95); /* --void with alpha */
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Loading state */
+    .loading {
+      opacity: 0.5;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Error/waiting state */
+    .waiting-message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 10, 0.95);
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .error {
+      color: #ff6b6b;
+    }
+
+    .pending {
+      color: #FFD700; /* --gold */
+    }
+
+    /* Hide elements when not needed */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay" class="overlay-container loading">
+    <!-- Left Player -->
+    <div class="player-panel left" id="left-panel">
+      <div class="player-info">
+        <span class="name" id="left-name">Loading...</span>
+        <span class="combo" id="left-combo">---</span>
+        <span class="stadium-side" id="left-side">B-Side</span>
+      </div>
+      <div class="score-section">
+        <div class="score-dots" id="left-dots"></div>
+        <div class="win-history" id="left-history"></div>
+      </div>
+    </div>
+
+    <!-- Right Player -->
+    <div class="player-panel right" id="right-panel">
+      <div class="player-info">
+        <span class="name" id="right-name">Loading...</span>
+        <span class="combo" id="right-combo">---</span>
+        <span class="stadium-side" id="right-side">X-Side</span>
+      </div>
+      <div class="score-section">
+        <div class="score-dots" id="right-dots"></div>
+        <div class="win-history" id="right-history"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round indicator (center bottom) -->
+  <div class="round-indicator" id="round-indicator">Round 1</div>
+
+  <!-- Waiting/Error message -->
+  <div id="waiting-message" class="waiting-message hidden">
+    <span id="message-text">Waiting for match...</span>
+  </div>
+
+  <script>
+    // Inertia OBS Match Overlay
+    // URL: inertia.cx/overlay.html?tournament_id=X&table=Y
+
+    const CONFIG = {
+      SUPABASE_URL: 'https://puucaluhlwdfphsiznrx.supabase.co',
+      TOURNAMENT_ID: new URLSearchParams(location.search).get('tournament_id'),
+      TABLE: new URLSearchParams(location.search).get('table') || '1',
+      REFRESH_INTERVAL: 250, // 4x per second for snappy updates
+    };
+
+    const API_URL = `${CONFIG.SUPABASE_URL}/functions/v1/tournament-live`;
+
+    // DOM elements
+    const overlay = document.getElementById('overlay');
+    const roundIndicator = document.getElementById('round-indicator');
+    const waitingMessage = document.getElementById('waiting-message');
+    const messageText = document.getElementById('message-text');
+
+    // Generate score dots HTML
+    function renderScoreDots(score, pointGoal) {
+      let html = '';
+      for (let i = 0; i < pointGoal; i++) {
+        const filled = i < score ? 'filled' : '';
+        html += `<div class="dot ${filled}"></div>`;
+      }
+      return html;
+    }
+
+    // Abbreviate finish type for display
+    function abbreviateFinish(finishType) {
+      const type = (finishType || '').toLowerCase();
+      if (type.includes('spin')) return { abbr: 'SF', class: 'spin' };
+      if (type.includes('burst')) return { abbr: 'BF', class: 'burst' };
+      if (type.includes('over')) return { abbr: 'OF', class: 'over' };
+      if (type.includes('xtreme')) return { abbr: 'XF', class: 'xtreme' };
+      return { abbr: '?', class: '' };
+    }
+
+    // Render win history as finish type tags
+    function renderWinHistory(history) {
+      if (!history || !history.length) return '';
+      return history.map(finish => {
+        const { abbr, class: cls } = abbreviateFinish(finish);
+        return `<span class="finish-tag ${cls}">${abbr}</span>`;
+      }).join('');
+    }
+
+    // Show match UI
+    function showMatch() {
+      overlay.classList.remove('hidden');
+      roundIndicator.classList.remove('hidden');
+      waitingMessage.classList.add('hidden');
+    }
+
+    // Show waiting/error message
+    function showMessage(text, isError = false) {
+      overlay.classList.add('hidden');
+      roundIndicator.classList.add('hidden');
+      waitingMessage.classList.remove('hidden');
+      waitingMessage.className = 'waiting-message' + (isError ? ' error' : ' pending');
+      messageText.textContent = text;
+    }
+
+    // Update UI with match data
+    function updateUI(data) {
+      const table = data.tables.find(t => t.table_number === parseInt(CONFIG.TABLE));
+
+      if (!table) {
+        showMessage(`No match at Table ${CONFIG.TABLE}`);
+        return;
+      }
+
+      showMatch();
+      overlay.classList.remove('loading');
+
+      // Update round indicator based on status
+      roundIndicator.classList.remove('complete');
+      if (table.status === 'pending') {
+        roundIndicator.textContent = 'Match Not Started';
+        roundIndicator.style.color = '#FFD700';
+      } else if (table.status === 'completed') {
+        roundIndicator.textContent = 'Match Complete';
+        roundIndicator.style.color = '';
+        roundIndicator.classList.add('complete');
+      } else {
+        roundIndicator.textContent = `Round ${table.round}`;
+        roundIndicator.style.color = '';
+      }
+
+      const pointGoal = table.point_goal || 3;
+      const leftScore = table.left_player.score || 0;
+      const rightScore = table.right_player.score || 0;
+
+      // Determine winner when score reaches point goal
+      const leftReachedGoal = leftScore >= pointGoal;
+      const rightReachedGoal = rightScore >= pointGoal;
+      const hasWinner = leftReachedGoal || rightReachedGoal;
+
+      if (hasWinner) {
+        roundIndicator.textContent = 'Match Complete';
+        roundIndicator.style.color = '';
+        roundIndicator.classList.add('complete');
+      }
+
+      // Left player
+      const leftPanel = document.getElementById('left-panel');
+      const leftName = document.getElementById('left-name');
+      leftName.textContent = table.left_player.name;
+      leftName.style.color = table.left_player.color || '#ffffff';
+      document.getElementById('left-combo').textContent = table.left_player.combo;
+      document.getElementById('left-side').textContent =
+        table.left_player.stadium_side === 'b_side' ? 'B-Side' : 'X-Side';
+      document.getElementById('left-dots').innerHTML =
+        renderScoreDots(leftScore, pointGoal);
+      document.getElementById('left-history').innerHTML =
+        renderWinHistory(table.left_player.win_history);
+
+      leftPanel.classList.remove('winner', 'loser');
+      if (hasWinner) {
+        leftPanel.classList.add(leftReachedGoal ? 'winner' : 'loser');
+      }
+
+      // Right player
+      const rightPanel = document.getElementById('right-panel');
+      const rightName = document.getElementById('right-name');
+      rightName.textContent = table.right_player.name;
+      rightName.style.color = table.right_player.color || '#ffffff';
+      document.getElementById('right-combo').textContent = table.right_player.combo;
+      document.getElementById('right-side').textContent =
+        table.right_player.stadium_side === 'b_side' ? 'B-Side' : 'X-Side';
+      document.getElementById('right-dots').innerHTML =
+        renderScoreDots(rightScore, pointGoal);
+      document.getElementById('right-history').innerHTML =
+        renderWinHistory(table.right_player.win_history);
+
+      rightPanel.classList.remove('winner', 'loser');
+      if (hasWinner) {
+        rightPanel.classList.add(rightReachedGoal ? 'winner' : 'loser');
+      }
+    }
+
+    async function fetchData() {
+      if (!CONFIG.TOURNAMENT_ID) {
+        showMessage('Missing tournament_id parameter', true);
+        return;
+      }
+
+      try {
+        const url = `${API_URL}?id=${CONFIG.TOURNAMENT_ID}&table=${CONFIG.TABLE}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        updateUI(data);
+      } catch (error) {
+        showMessage(error.message, true);
+      }
+    }
+
+    // Initial fetch
+    fetchData();
+
+    // Auto-refresh
+    setInterval(fetchData, CONFIG.REFRESH_INTERVAL);
+  </script>
+</body>
+</html>
