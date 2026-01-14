@@ -374,17 +374,6 @@
       const leftScore = table.left_player.score || 0;
       const rightScore = table.right_player.score || 0;
 
-      // Determine winner when score reaches point goal
-      const leftReachedGoal = leftScore >= pointGoal;
-      const rightReachedGoal = rightScore >= pointGoal;
-      const hasWinner = leftReachedGoal || rightReachedGoal;
-
-      if (hasWinner) {
-        roundIndicator.textContent = 'Match Complete';
-        roundIndicator.style.color = '';
-        roundIndicator.classList.add('complete');
-      }
-
       // Left player
       const leftPanel = document.getElementById('left-panel');
       const leftName = document.getElementById('left-name');
@@ -398,9 +387,14 @@
       document.getElementById('left-history').innerHTML =
         renderWinHistory(table.left_player.win_history);
 
+      // Use authoritative is_winner from API (not derived from scores)
+      const leftIsWinner = table.left_player.is_winner === true;
+      const rightIsWinner = table.right_player.is_winner === true;
+      const matchComplete = table.status === 'completed' || leftIsWinner || rightIsWinner;
+
       leftPanel.classList.remove('winner', 'loser');
-      if (hasWinner) {
-        leftPanel.classList.add(leftReachedGoal ? 'winner' : 'loser');
+      if (matchComplete && (leftIsWinner || rightIsWinner)) {
+        leftPanel.classList.add(leftIsWinner ? 'winner' : 'loser');
       }
 
       // Right player
@@ -417,8 +411,8 @@
         renderWinHistory(table.right_player.win_history);
 
       rightPanel.classList.remove('winner', 'loser');
-      if (hasWinner) {
-        rightPanel.classList.add(rightReachedGoal ? 'winner' : 'loser');
+      if (matchComplete && (leftIsWinner || rightIsWinner)) {
+        rightPanel.classList.add(rightIsWinner ? 'winner' : 'loser');
       }
     }
 
