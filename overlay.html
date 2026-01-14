@@ -298,17 +298,24 @@
     }
 
     // Abbreviate finish type for display
-    // API sends Dart enum names: spinFinish, burstFinish, overFinish, extremeFinish, ringOut, launchError
+    // API sends short codes: S (spin), B (burst), O (over), X (extreme), R (ring out), L (launch error)
     function abbreviateFinish(finishType) {
-      const type = (finishType || '').toLowerCase();
-      if (type.includes('spin')) return { abbr: 'SF', class: 'spin' };
-      if (type.includes('burst')) return { abbr: 'BF', class: 'burst' };
-      if (type.includes('over')) return { abbr: 'OF', class: 'over' };
-      if (type.includes('extreme')) return { abbr: 'XF', class: 'xtreme' };
-      if (type.includes('ringout') || type.includes('ring_out')) return { abbr: 'RO', class: 'over' };
-      if (type.includes('launch')) return { abbr: 'LE', class: '' };
-      if (type.includes('timeout')) return { abbr: 'TO', class: '' };
-      if (type.includes('forfeit')) return { abbr: 'FF', class: '' };
+      const type = (finishType || '').toUpperCase();
+      // Handle single-letter codes from API
+      if (type === 'S') return { abbr: 'SF', class: 'spin' };
+      if (type === 'B') return { abbr: 'BF', class: 'burst' };
+      if (type === 'O') return { abbr: 'OF', class: 'over' };
+      if (type === 'X') return { abbr: 'XF', class: 'xtreme' };
+      if (type === 'R') return { abbr: 'RO', class: 'over' };
+      if (type === 'L') return { abbr: 'LE', class: '' };
+      // Fallback: handle full names (legacy or future changes)
+      const lower = type.toLowerCase();
+      if (lower.includes('spin')) return { abbr: 'SF', class: 'spin' };
+      if (lower.includes('burst')) return { abbr: 'BF', class: 'burst' };
+      if (lower.includes('over')) return { abbr: 'OF', class: 'over' };
+      if (lower.includes('extreme')) return { abbr: 'XF', class: 'xtreme' };
+      if (lower.includes('ring')) return { abbr: 'RO', class: 'over' };
+      if (lower.includes('launch')) return { abbr: 'LE', class: '' };
       return { abbr: '?', class: '' };
     }
 
