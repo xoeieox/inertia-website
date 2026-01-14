@@ -298,14 +298,15 @@
     }
 
     // Abbreviate finish type for display
-    // Database enum: 'spin', 'burst', 'over', 'extreme', 'ring_out', 'timeout', 'forfeit'
+    // API sends Dart enum names: spinFinish, burstFinish, overFinish, extremeFinish, ringOut, launchError
     function abbreviateFinish(finishType) {
       const type = (finishType || '').toLowerCase();
       if (type.includes('spin')) return { abbr: 'SF', class: 'spin' };
       if (type.includes('burst')) return { abbr: 'BF', class: 'burst' };
       if (type.includes('over')) return { abbr: 'OF', class: 'over' };
       if (type.includes('extreme')) return { abbr: 'XF', class: 'xtreme' };
-      if (type.includes('ring_out')) return { abbr: 'RO', class: 'over' };
+      if (type.includes('ringout') || type.includes('ring_out')) return { abbr: 'RO', class: 'over' };
+      if (type.includes('launch')) return { abbr: 'LE', class: '' };
       if (type.includes('timeout')) return { abbr: 'TO', class: '' };
       if (type.includes('forfeit')) return { abbr: 'FF', class: '' };
       return { abbr: '?', class: '' };
