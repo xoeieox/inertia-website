@@ -274,7 +274,7 @@
 
     const CONFIG = {
       SUPABASE_URL: 'https://puucaluhlwdfphsiznrx.supabase.co',
-      TOURNAMENT_ID: new URLSearchParams(location.search).get('tournament_id'),
+      TOURNAMENT_ID: new URLSearchParams(location.search).get('tournament_id') || new URLSearchParams(location.search).get('id'),
       TABLE: new URLSearchParams(location.search).get('table') || '1',
       REFRESH_INTERVAL: 250, // 4x per second for snappy updates
     };
@@ -429,7 +429,7 @@
       }
 
       try {
-        const url = `${API_URL}?tournament_id=${CONFIG.TOURNAMENT_ID}&table=${CONFIG.TABLE}`;
+        const url = `${API_URL}?id=${CONFIG.TOURNAMENT_ID}&table=${CONFIG.TABLE}`;
         const response = await fetch(url);
 
         if (!response.ok) {
