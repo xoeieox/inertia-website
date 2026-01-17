@@ -325,7 +325,7 @@
   <script src="js/deck-type-colors.js"></script>
   <script>
     // Inertia Bracket Viewer
-    // URL: inertia.cx/bracket.html?id=X
+    // URL: inertia.cx/bracket.html?tournament_id=X
 
     const SUPABASE_URL = 'https://puucaluhlwdfphsiznrx.supabase.co';
     const API_URL = `${SUPABASE_URL}/functions/v1/tournament-live`;
@@ -339,7 +339,7 @@
         error: null,
 
         get tournamentId() {
-          return new URLSearchParams(location.search).get('id');
+          return new URLSearchParams(location.search).get('tournament_id');
         },
 
         get isLive() {
@@ -377,7 +377,7 @@
 
         async init() {
           if (!this.tournamentId) {
-            this.error = 'Missing tournament ID. Use ?id=YOUR_TOURNAMENT_ID';
+            this.error = 'Missing tournament ID. Use ?tournament_id=YOUR_TOURNAMENT_ID';
             this.loading = false;
             return;
           }
@@ -391,7 +391,7 @@
         async fetchBracket() {
           try {
             // First try the Edge Function
-            const response = await fetch(`${API_URL}?id=${this.tournamentId}`);
+            const response = await fetch(`${API_URL}?tournament_id=${this.tournamentId}`);
 
             if (!response.ok) {
               const err = await response.json();
