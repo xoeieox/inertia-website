@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Privacy Policy | Inertia</title>
-        <meta name="description" content="Inertia Newsletter Privacy Policy - How we handle your data.">
+        <meta name="description" content="Inertia Privacy Policy - How we handle your data in our app and services.">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
         <!-- External Stylesheets -->
@@ -14,6 +14,33 @@
         <link href="css/animations.css" rel="stylesheet" type="text/css">
         <!-- Alpine.js -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <style>
+            .policy-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 1rem;
+            }
+            .policy-table td {
+                padding: 0.5rem 0;
+                vertical-align: top;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .policy-table tr:last-child td {
+                border-bottom: none;
+            }
+            .policy-table .label {
+                width: 140px;
+                color: var(--cyan);
+                font-weight: 500;
+                padding-right: 1rem;
+            }
+            .policy-table .content {
+                color: rgba(245, 245, 245, 0.8);
+            }
+            .policy-table.negative .label {
+                color: #f87171;
+            }
+        </style>
     </head>
     <body>
         <div class="min-h-screen">
@@ -29,9 +56,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                                <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a><a href="/guide.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">App Guide</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
                                 </div>
-                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/404.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Dev Blog</a><a href="/theorycrafting.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Theorycrafting</a>
+                            </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/theorycrafting.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors text-sm tracking-wider uppercase" style="text-decoration: none;">Theorycrafting</a>
                         </div>
                     </div>
                 </div>
@@ -39,49 +66,145 @@
             <!-- CONTENT -->
             <section class="relative pt-32 pb-20">
                 <div class="container max-w-3xl mx-auto px-6">
-                    <h1 class="text-4xl sm:text-5xl font-thin tracking-widest mb-4 text-center">PRIVACY POLICY</h1>
-                    <p class="text-center text-gray-400 mb-12">Inertia Newsletter Privacy Policy</p>
+                    <h1 class="text-4xl sm:text-5xl font-thin tracking-widest mb-3 text-center">PRIVACY POLICY</h1>
+                    <p class="text-center text-gray-400 mb-8">Inertia App & Services Privacy Policy</p>
 
                     <div class="prose prose-invert max-w-none">
-                        <p class="text-sm text-gray-400 mb-8"><strong>Last Updated:</strong> October 22, 2025</p>
+                        <p class="text-sm text-gray-400 mb-4"><strong>Last Updated:</strong> January 23, 2026</p>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">What We Collect</h2>
-                        <ul class="space-y-2 text-gray-300 mb-8">
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Email address (required to send newsletter)</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>First name (optional, for personalization)</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Role preference (tournament organizer/competitive player - optional, for segmentation)</span></li>
-                        </ul>
+                        <p class="text-gray-300 mb-4">Inertia ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the Inertia mobile application ("App") and related services, including our website and newsletter. Please read this privacy policy carefully.</p>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">How We Use It</h2>
-                        <ul class="space-y-2 text-gray-300 mb-8">
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Send bi-weekly Inertia newsletter updates</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Segment content based on your interests (organizer vs. player)</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Invite you to beta testing programs</span></li>
-                        </ul>
+                        <!-- INERTIA APP SECTION -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Inertia App</h2>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">What We DON'T Do</h2>
-                        <ul class="space-y-2 text-gray-300 mb-8">
-                            <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✗</span><span>Sell your email to third parties</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✗</span><span>Share your data with advertisers</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✗</span><span>Send spam or unrelated promotions</span></li>
-                            <li class="flex items-start gap-3"><span class="text-red-400 mt-1">✗</span><span>Track you across other websites</span></li>
-                        </ul>
+                        <h3 class="text-xl font-light tracking-wide text-frost mb-2 mt-4">Information We Collect</h3>
+                        <p class="text-gray-300 mb-2"><strong>Information You Provide:</strong></p>
+                        <table class="policy-table">
+                            <tr><td class="label">Account Info</td><td class="content">Username, email address, and profile information when you create an account</td></tr>
+                            <tr><td class="label">Tournament Data</td><td class="content">Tournament names, participant information, match results, and standings</td></tr>
+                            <tr><td class="label">Combo Data</td><td class="content">Beyblade combo configurations, performance notes, and testing data</td></tr>
+                            <tr><td class="label">Battle Records</td><td class="content">Match history, win/loss records, and practice session data</td></tr>
+                        </table>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">Third-Party Services</h2>
-                        <p class="text-gray-300 mb-4"><strong>Buttondown</strong> (newsletter platform) - stores your email and manages subscriptions.</p>
-                        <p class="text-gray-300 mb-8">See their privacy policy: <a href="https://buttondown.email/legal/privacy" class="text-cyan hover:underline" target="_blank" rel="noopener noreferrer">https://buttondown.email/legal/privacy</a></p>
+                        <p class="text-gray-300 mb-2"><strong>Information Collected Automatically:</strong></p>
+                        <table class="policy-table">
+                            <tr><td class="label">Device Info</td><td class="content">Device type, operating system version, unique device identifiers</td></tr>
+                            <tr><td class="label">Usage Data</td><td class="content">Features used, time spent in the App, crash reports</td></tr>
+                            <tr><td class="label">Log Data</td><td class="content">Access times and system activity for troubleshooting</td></tr>
+                        </table>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">Your Rights</h2>
-                        <ul class="space-y-2 text-gray-300 mb-8">
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Unsubscribe anytime (link at bottom of every email)</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Update your preferences (link at bottom of every email)</span></li>
-                            <li class="flex items-start gap-3"><span class="text-cyan mt-1">•</span><span>Request data deletion: contact@inertia.cx</span></li>
-                        </ul>
+                        <h3 class="text-xl font-light tracking-wide text-frost mb-2 mt-4">Information We Do NOT Collect</h3>
+                        <table class="policy-table negative">
+                            <tr><td class="label">Location</td><td class="content">Precise geolocation data</td></tr>
+                            <tr><td class="label">Contacts</td><td class="content">Contact lists or address books</td></tr>
+                            <tr><td class="label">Media</td><td class="content">Photos, videos, or files (unless you explicitly share them)</td></tr>
+                            <tr><td class="label">Financial</td><td class="content">Payment or financial information</td></tr>
+                            <tr><td class="label">Biometric</td><td class="content">Fingerprints, face data, or other biometric data</td></tr>
+                        </table>
 
-                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-4 mt-8">Contact</h2>
-                        <p class="text-gray-300 mb-8">Questions? Email: <a href="mailto:contact@inertia.cx" class="text-cyan hover:underline">contact@inertia.cx</a></p>
+                        <h3 class="text-xl font-light tracking-wide text-frost mb-2 mt-4">How We Use Your Information</h3>
+                        <table class="policy-table">
+                            <tr><td class="label">App Features</td><td class="content">Provide, maintain, and improve the App's functionality</td></tr>
+                            <tr><td class="label">Tournaments</td><td class="content">Enable tournament organization and management features</td></tr>
+                            <tr><td class="label">Statistics</td><td class="content">Track and display your battle history and performance statistics</td></tr>
+                            <tr><td class="label">Cloud Sync</td><td class="content">Sync your data across devices (if enabled)</td></tr>
+                            <tr><td class="label">Updates</td><td class="content">Send technical notices and updates</td></tr>
+                            <tr><td class="label">Analytics</td><td class="content">Analyze usage patterns to improve user experience</td></tr>
+                            <tr><td class="label">Troubleshooting</td><td class="content">Detect, prevent, and address technical issues</td></tr>
+                        </table>
 
-                        <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+                        <h3 class="text-xl font-light tracking-wide text-frost mb-2 mt-4">Data Storage</h3>
+                        <table class="policy-table">
+                            <tr><td class="label">Local Storage</td><td class="content">By default, data is stored locally on your device. We do not have access to it. Uninstalling may delete this data.</td></tr>
+                            <tr><td class="label">Cloud Sync</td><td class="content">Optional. If enabled, data is stored on secure servers, encrypted in transit and at rest. Delete anytime in App settings.</td></tr>
+                        </table>
+
+                        <!-- NEWSLETTER SECTION -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Newsletter</h2>
+
+                        <table class="policy-table">
+                            <tr><td class="label">Email</td><td class="content">Required to send newsletter</td></tr>
+                            <tr><td class="label">First Name</td><td class="content">Optional, for personalization</td></tr>
+                            <tr><td class="label">Role</td><td class="content">Optional, for content segmentation</td></tr>
+                        </table>
+
+                        <h3 class="text-xl font-light tracking-wide text-frost mb-2 mt-4">How We Use It</h3>
+                        <table class="policy-table">
+                            <tr><td class="label">Updates</td><td class="content">Send Inertia newsletter updates</td></tr>
+                            <tr><td class="label">Segmentation</td><td class="content">Tailor content based on your interests</td></tr>
+                            <tr><td class="label">Beta Access</td><td class="content">Invite you to beta testing programs</td></tr>
+                        </table>
+
+                        <!-- DATA SHARING -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Data Sharing & Disclosure</h2>
+                        <p class="text-gray-300 mb-2">We do not sell, trade, or rent your personal information. We may share information only:</p>
+                        <table class="policy-table">
+                            <tr><td class="label">Your Consent</td><td class="content">When you explicitly agree (e.g., sharing tournament results publicly)</td></tr>
+                            <tr><td class="label">Participants</td><td class="content">Tournament data may be visible to other participants</td></tr>
+                            <tr><td class="label">Providers</td><td class="content">Third-party vendors who assist in operating our services (under confidentiality)</td></tr>
+                            <tr><td class="label">Legal</td><td class="content">When required by law or to respond to legal process</td></tr>
+                        </table>
+
+                        <!-- WHAT WE DON'T DO -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">What We DON'T Do</h2>
+                        <table class="policy-table negative">
+                            <tr><td class="label">Sell Data</td><td class="content">We never sell your data to third parties</td></tr>
+                            <tr><td class="label">Advertisers</td><td class="content">We never share your data with advertisers</td></tr>
+                            <tr><td class="label">Spam</td><td class="content">We never send spam or unrelated promotions</td></tr>
+                            <tr><td class="label">Tracking</td><td class="content">We never track you across other websites</td></tr>
+                        </table>
+
+                        <!-- THIRD PARTY SERVICES -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Third-Party Services</h2>
+                        <p class="text-gray-300 mb-2">Our services may use the following third-party services:</p>
+                        <table class="policy-table">
+                            <tr><td class="label">Buttondown</td><td class="content">Newsletter platform — <a href="https://buttondown.email/legal/privacy" class="text-cyan hover:underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a></td></tr>
+                            <tr><td class="label">Analytics</td><td class="content">To understand App usage and improve performance</td></tr>
+                            <tr><td class="label">Crash Reports</td><td class="content">To identify and fix technical issues</td></tr>
+                        </table>
+                        <p class="text-gray-300 text-sm mb-4 mt-2">We are not responsible for the privacy practices of third-party services.</p>
+
+                        <!-- CHILDREN'S PRIVACY -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Children's Privacy</h2>
+                        <p class="text-gray-300 mb-4">The App is intended for users of all ages. We do not knowingly collect personal information from children under 13 without parental consent. If you are a parent or guardian and believe your child has provided us with personal information, please contact us so we can delete such information.</p>
+
+                        <!-- YOUR RIGHTS -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Your Rights</h2>
+                        <table class="policy-table">
+                            <tr><td class="label">Access</td><td class="content">Request a copy of your personal data</td></tr>
+                            <tr><td class="label">Correction</td><td class="content">Update or correct inaccurate data</td></tr>
+                            <tr><td class="label">Deletion</td><td class="content">Request deletion of your data</td></tr>
+                            <tr><td class="label">Portability</td><td class="content">Export your data in a common format</td></tr>
+                            <tr><td class="label">Opt-Out</td><td class="content">Disable optional data collection in App settings</td></tr>
+                            <tr><td class="label">Unsubscribe</td><td class="content">Link at the bottom of every newsletter email</td></tr>
+                        </table>
+
+                        <!-- DATA RETENTION -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Data Retention</h2>
+                        <p class="text-gray-300 mb-4">We retain your information for as long as your account is active or as needed to provide services. Locally stored data persists until you delete it or uninstall the App. Cloud-synced data is retained until you request deletion.</p>
+
+                        <!-- SECURITY -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Security</h2>
+                        <p class="text-gray-300 mb-4">We implement appropriate technical and organizational security measures to protect your information. Data transmitted to our servers is encrypted. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+                        <!-- INTERNATIONAL USERS -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">International Users</h2>
+                        <p class="text-gray-300 mb-4">If you are accessing our services from outside the United States, your information may be transferred to, stored, and processed in the United States or other countries where our servers are located.</p>
+
+                        <!-- CHANGES -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Changes to This Policy</h2>
+                        <p class="text-gray-300 mb-4">We may update this Privacy Policy from time to time. We will notify you of changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+
+                        <!-- CONTACT -->
+                        <h2 class="text-2xl font-light tracking-wide text-cyan mb-3 mt-6">Contact Us</h2>
+                        <p class="text-gray-300 mb-2">If you have questions about this Privacy Policy or our data practices:</p>
+                        <p class="text-gray-300 mb-4">
+                            <strong>Email:</strong> <a href="mailto:contact@inertia.cx" class="text-cyan hover:underline">contact@inertia.cx</a><br>
+                            <strong>Website:</strong> <a href="https://inertia.cx" class="text-cyan hover:underline">https://inertia.cx</a>
+                        </p>
+
+                        <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+                            <p class="text-gray-400 text-sm mb-3">By using the Inertia App or subscribing to our newsletter, you acknowledge that you have read and understood this Privacy Policy.</p>
                             <a href="/" class="text-cyan hover:underline">← Return to Homepage</a>
                         </div>
                     </div>
@@ -95,7 +218,7 @@
                             <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
                             <p class="text-sm text-muted">© 2025. All rights reserved.</p>
                         </div>
-                        <div class="flex space-x-8"><a href="/privacy.html" class="text-sm text-cyan">Privacy</a><a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a><a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                        <div class="flex space-x-8"><a href="/privacy.html" class="text-sm text-cyan">Privacy</a><a href="/terms.html" class="text-sm text-muted hover:text-cyan transition-colors">Terms</a><a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
                         </div>
                     </div>
                 </div>
