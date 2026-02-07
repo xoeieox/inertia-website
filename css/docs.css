@@ -1,0 +1,525 @@
+/* ==========================================================================
+   Docs Styling - Shared across all documentation pages
+   ========================================================================== */
+
+/* Layout */
+.docs-layout {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.docs-content {
+    flex: 1;
+    max-width: 800px;
+    padding: 2rem 0;
+}
+
+/* Sticky Sidebar TOC (Desktop) */
+.docs-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    display: none;
+    position: fixed;
+    right: 2rem;
+    top: 5rem;
+}
+
+.docs-sidebar-inner {
+    padding: 1rem 0;
+}
+
+.docs-sidebar h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.5);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.docs-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.docs-sidebar li {
+    margin: 0;
+}
+
+.docs-sidebar a {
+    display: block;
+    padding: 0.5rem 0 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(245, 245, 245, 0.5);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+}
+
+.docs-sidebar a:hover {
+    color: rgba(245, 245, 245, 0.8);
+}
+
+.docs-sidebar a.active {
+    color: var(--cyan);
+    border-left-color: var(--cyan);
+    background: linear-gradient(90deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
+}
+
+.docs-sidebar .coming-soon {
+    padding: 0.5rem 0 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: rgba(245, 245, 245, 0.3);
+    font-style: italic;
+}
+
+/* Show sidebar on larger screens */
+@media (min-width: 1200px) {
+    .docs-sidebar {
+        display: block;
+    }
+    .mobile-toc {
+        display: none;
+    }
+}
+
+/* Docs Header */
+.docs-header {
+    text-align: center;
+    padding: 6rem 0 3rem;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    margin-bottom: 3rem;
+}
+
+.docs-badge {
+    display: inline-block;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: var(--cyan);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.docs-title {
+    font-size: 2.5rem;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.docs-subtitle {
+    color: rgba(245, 245, 245, 0.7);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Mobile TOC */
+.mobile-toc {
+    background: var(--steel);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+}
+
+.mobile-toc h3 {
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+}
+
+.mobile-toc-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-toc-list a {
+    color: rgba(245, 245, 245, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    display: block;
+    transition: color 0.2s;
+}
+
+.mobile-toc-list a:hover {
+    color: var(--cyan);
+}
+
+.mobile-toc-list a::before {
+    content: '-> ';
+    color: rgba(0, 229, 255, 0.5);
+}
+
+/* Docs Sections */
+.docs-section {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.docs-section:last-child {
+    border-bottom: none;
+}
+
+.section-number {
+    color: var(--cyan);
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.docs-section p {
+    color: rgba(245, 245, 245, 0.85);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+.docs-section h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 2rem 0 1rem;
+    color: var(--frost);
+}
+
+/* Step Lists */
+.step-list {
+    list-style: none;
+    counter-reset: steps;
+    margin: 1.5rem 0;
+    padding: 0;
+}
+
+.step-list li {
+    counter-increment: steps;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.25rem;
+    color: rgba(245, 245, 245, 0.85);
+    line-height: 1.7;
+}
+
+.step-list li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--cyan);
+}
+
+/* Boxes */
+.tip-box {
+    background: rgba(0, 229, 255, 0.05);
+    border-left: 3px solid var(--cyan);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.tip-box strong {
+    color: var(--cyan);
+    font-weight: 500;
+}
+
+.tip-box p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.warning-box {
+    background: rgba(255, 215, 0, 0.05);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.warning-box strong {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.warning-box p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.key-term {
+    color: var(--cyan);
+    font-weight: 500;
+}
+
+/* Score Grid */
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.score-card {
+    background: var(--steel);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.score-card .points {
+    font-size: 2rem;
+    font-weight: 200;
+    color: var(--cyan);
+}
+
+.score-card .label {
+    font-size: 0.875rem;
+    color: rgba(245, 245, 245, 0.7);
+    margin-top: 0.25rem;
+}
+
+/* Flow Diagram */
+.flow-diagram {
+    background: var(--steel);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.flow-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flow-step {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.flow-arrow {
+    color: var(--cyan);
+    font-size: 1.25rem;
+}
+
+/* ASCII Diagram Blocks */
+.diagram {
+    background: var(--steel);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: rgba(245, 245, 245, 0.9);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+/* Tables */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.docs-table th {
+    background: var(--steel);
+    color: var(--cyan);
+    font-weight: 500;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid rgba(0, 229, 255, 0.2);
+}
+
+.docs-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(245, 245, 245, 0.85);
+}
+
+.docs-table tr:hover td {
+    background: rgba(0, 229, 255, 0.03);
+}
+
+/* Footer elements */
+.back-to-top {
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    color: var(--cyan);
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+}
+
+.back-to-top:hover {
+    color: var(--frost);
+}
+
+.version-info {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(245, 245, 245, 0.5);
+    font-size: 0.875rem;
+}
+
+/* Docs Hub Cards */
+.docs-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.docs-card {
+    background: var(--steel);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.docs-card:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
+}
+
+.docs-card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.docs-card h3 {
+    color: var(--frost);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+}
+
+.docs-card p {
+    color: rgba(245, 245, 245, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.docs-card .coming-soon-label {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: var(--gold);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+/* Room Grid Visualization */
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    max-width: 360px;
+    margin: 1.5rem auto;
+    background: var(--steel);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+.room-cell {
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    border-radius: 4px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(245, 245, 245, 0.7);
+    transition: all 0.2s ease;
+}
+
+.room-cell.highlighted {
+    background: rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.4);
+    color: var(--cyan);
+}
+
+.room-cell.center {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .docs-header {
+        padding: 5rem 0 2rem;
+    }
+
+    .docs-title {
+        font-size: 1.75rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .mobile-toc-list {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-steps {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .diagram {
+        font-size: 0.7rem;
+    }
+}
