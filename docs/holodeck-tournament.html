@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Holodeck & Tournament Flow | Inertia Documentation</title>
+        <meta name="description" content="Understanding Programs, Battle Modes, and Staging in Inertia. Learn the one-button tournament progression system.">
+        <link href="../../css/theme.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- External Stylesheets -->
+        <link href="../css/design-tokens.css" rel="stylesheet" type="text/css">
+        <link href="../css/utilities.css" rel="stylesheet" type="text/css">
+        <link href="../css/mvp.css" rel="stylesheet" type="text/css">
+        <link href="../css/animations.css" rel="stylesheet" type="text/css">
+        <link href="../css/docs.css" rel="stylesheet" type="text/css">
+        <!-- Alpine.js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body x-data="{ activeSection: 'overview' }">
+        <!-- NAVIGATION -->
+        <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                            <button class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
+                                Products
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a><a href="/docs/" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Documentation</a><a href="/releases.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Release Notes</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                            </div>
+                        </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/theorycrafting.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Theorycrafting</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="docs-layout">
+            <!-- MAIN CONTENT -->
+            <div class="docs-content">
+                <!-- HEADER -->
+                <header class="docs-header" id="top">
+                    <div class="docs-badge">v1.5.6</div>
+                    <h1 class="docs-title">HOLODECK & TOURNAMENTS</h1>
+                    <p class="docs-subtitle">Programs, Battle Modes, Staging, and the one-button progression system</p>
+                </header>
+                <!-- MOBILE TOC -->
+                <nav class="mobile-toc">
+                    <h3>Contents</h3>
+                    <ul class="mobile-toc-list">
+                        <li>
+                            <a href="#overview">The Big Picture</a>
+                        </li>
+                        <li>
+                            <a href="#modules">Creating Modules</a>
+                        </li>
+                        <li>
+                            <a href="#programs">Assembling Programs</a>
+                        </li>
+                        <li>
+                            <a href="#tournament-flow">Tournament Flow</a>
+                        </li>
+                        <li>
+                            <a href="#progression">Multi-Stage Progression</a>
+                        </li>
+                        <li>
+                            <a href="#summary">Summary</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- SECTION 1: OVERVIEW -->
+                <section class="docs-section" id="overview" x-intersect:enter.margin.-200px="activeSection = 'overview'">
+                    <div class="section-number">Section 01</div>
+                    <h2 class="section-title">The Big Picture</h2>
+                    <p>The Holodeck is where you create reusable tournament configurations. Think of it as programming your tournament &quot;environment&quot; before you run it.</p>
+                    <pre class="diagram">
+┌─────────────────────────────────────────────────────────────────────┐
+│                           HOLODECK                                  │
+│  ┌─────────────────┐    ┌─────────────────┐                        │
+│  │   Battle Mode   │    │     Staging     │                        │
+│  │  (match rules)  │    │ (structure)     │                        │
+│  │                 │    │                 │                        │
+│  │  • Point goal   │    │  • Swiss 5R     │                        │
+│  │  • Deck size    │    │  • Top 8 SE     │                        │
+│  │  • Scoring      │    │  • Championship │                        │
+│  │  • Ring out     │    │  • Auto rounds  │                        │
+│  └────────┬────────┘    └────────┬────────┘                        │
+│           │                      │                                  │
+│           └──────────┬───────────┘                                  │
+│                      ▼                                              │
+│              ┌───────────────┐                                      │
+│              │    Program    │  ← Battle Mode + Staging             │
+│              │  "WBO Swiss"  │    (optional: League Compliance)     │
+│              └───────┬───────┘                                      │
+└──────────────────────┼──────────────────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                         TOURNAMENT                                  │
+│                                                                     │
+│   Load Program → Register Players → Start → Progress Stages        │
+│                                                                     │
+│   ┌─────────────────────────────────────────────────────────┐      │
+│   │              Tournament Progression                      │      │
+│   │                                                          │      │
+│   │   Swiss R1 → R2 → R3 → R4 → R5 → Finals → Championship  │      │
+│   │         ↑                                                │      │
+│   │    "One button to advance"                               │      │
+│   └─────────────────────────────────────────────────────────┘      │
+└─────────────────────────────────────────────────────────────────────┘
+</pre>
+                    <p>The key insight: <strong>Organizers don't need to think about pairing algorithms, round counts, or stage transitions.</strong> They load a Program, register players, and tap the FAB to advance. The system handles the complexity.</p>
+                </section>
+                <!-- SECTION 2: MODULES -->
+                <section class="docs-section" id="modules" x-intersect:enter.margin.-200px="activeSection = 'modules'">
+                    <div class="section-number">Section 02</div>
+                    <h2 class="section-title">Creating Modules in Holodeck</h2>
+                    <h4>Battle Mode (Match Rules)</h4>
+                    <p>Defines <strong>how individual matches are played</strong>:</p>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Point Goal</td>
+                                <td>First to 7</td>
+                            </tr>
+                            <tr>
+                                <td>Deck Size</td>
+                                <td>3v3</td>
+                            </tr>
+                            <tr>
+                                <td>Scoring</td>
+                                <td>Spin=1, Burst=2, Over=2, Extreme=3</td>
+                            </tr>
+                            <tr>
+                                <td>Ring Out</td>
+                                <td>Redo round</td>
+                            </tr>
+                            <tr>
+                                <td>Win Condition</td>
+                                <td>First to X points</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Staging (Tournament Structure)</h4>
+                    <p>Defines <strong>how the tournament progresses</strong>:</p>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Stage 1</td>
+                                <td>Swiss Rounds (5 rounds, auto-calculated)</td>
+                            </tr>
+                            <tr>
+                                <td>Stage 2</td>
+                                <td>Top 8 Single Elimination</td>
+                            </tr>
+                            <tr>
+                                <td>Stage 3</td>
+                                <td>Championship Match</td>
+                            </tr>
+                            <tr>
+                                <td>Advancement</td>
+                                <td>Top 8 advance from Swiss</td>
+                            </tr>
+                            <tr>
+                                <td>Deck Locked</td>
+                                <td>Yes (in Finals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Special: WBO Ranked Auto</h4>
+                    <p>When staging is set to <span class="key-term">WBO Ranked Auto</span>:</p>
+                    <ul class="step-list">
+                        <li>Structure auto-configures based on player count at tournament start</li>
+                        <li>16 players → Swiss 5R → Top 8 → Championship</li>
+                        <li>40 players → Swiss 6R → Top 16 → Championship</li>
+                        <li>No manual round count needed — the system calculates it</li>
+                    </ul>
+                </section>
+                <!-- SECTION 3: PROGRAMS -->
+                <section class="docs-section" id="programs" x-intersect:enter.margin.-200px="activeSection = 'programs'">
+                    <div class="section-number">Section 03</div>
+                    <h2 class="section-title">Assembling Programs</h2>
+                    <p>A <span class="key-term">Program</span> = Battle Mode + Staging (+ optional League Compliance filter)</p>
+                    <pre class="diagram">
+Program: "WBO Standard"
+├── Battle Mode: "WBO Official" (FT7, 3v3, standard scoring)
+├── Staging: "Swiss + Finals" (Swiss 5R → Top 8 → Championship)
+└── League: "WBO Ranked" (filters to compliant options only)
+</pre>
+                    <h4>Creating a Program</h4>
+                    <p>Programs are created in Holodeck's <strong>Assemble</strong> tab:</p>
+                    <ul class="step-list">
+                        <li>Select League (optional) — filters available options to compliant ones</li>
+                        <li>Pick Staging — your tournament structure</li>
+                        <li>Pick Battle Mode — your match rules</li>
+                        <li>Validation panel shows any compatibility warnings</li>
+                        <li>Save → Program ready to use in tournaments</li>
+                    </ul>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> Create Programs for your common tournament types. "Weekly Locals," "Monthly Championship," "Casual Practice" — load them with one tap when creating a tournament.</p>
+                    </div>
+                </section>
+                <!-- SECTION 4: TOURNAMENT FLOW -->
+                <section class="docs-section" id="tournament-flow" x-intersect:enter.margin.-200px="activeSection = 'tournament-flow'">
+                    <div class="section-number">Section 04</div>
+                    <h2 class="section-title">Programs in Tournament</h2>
+                    <h4>Creating a Tournament</h4>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Tournament Room</strong> → Create Tournament
+                        </li>
+                        <li>
+                            <strong>Load Program</strong> from Holodeck (or use a template)
+                        </li>
+                        <li>Program auto-populates all settings</li>
+                        <li>Share QR code for registration</li>
+                    </ul>
+                    <h4>The New Flow (v1.5.6+)</h4>
+                    <p>Before, running a tournament required navigating through Shōmen tabs, manually generating rounds, and tracking stage transitions:</p>
+                    <pre class="diagram">
+Before (with manual Shōmen):
+Create → Shōmen Setup → Shōmen Management → Generate Rounds → Judge → Shōmen Results
+         (configure)    (manual pairing)     (manual trigger)
+</pre>
+                    <p>Now, the contextual FAB (floating action button) uses the <span class="key-term">TournamentProgressionService</span> to always show the <strong>next logical action</strong>:</p>
+                    <pre class="diagram">
+After (v1.5.6+):
+Create with Program → Register Players → Start → FAB drives progression
+</pre>
+                    <h4>Floating Action Button State Machine</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Tournament State</th>
+                                <th>FAB Shows</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Players registered, not started</td>
+                                <td>"Start Tournament"</td>
+                            </tr>
+                            <tr>
+                                <td>Round 1 matches incomplete</td>
+                                <td>"Round 1 in progress"</td>
+                            </tr>
+                            <tr>
+                                <td>Round 1 complete</td>
+                                <td>"Generate Round 2"</td>
+                            </tr>
+                            <tr>
+                                <td>Swiss complete</td>
+                                <td>"Advance to Finals"</td>
+                            </tr>
+                            <tr>
+                                <td>Finals incomplete</td>
+                                <td>"Finals in progress"</td>
+                            </tr>
+                            <tr>
+                                <td>Finals complete, no championship</td>
+                                <td>"Generate Championship"</td>
+                            </tr>
+                            <tr>
+                                <td>Championship complete</td>
+                                <td>"Complete Tournament"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tip-box">
+                        <p><strong>Key improvement:</strong> You never have to ask "what do I do next?" The FAB tells you.</p>
+                    </div>
+                </section>
+                <!-- SECTION 5: PROGRESSION -->
+                <section class="docs-section" id="progression" x-intersect:enter.margin.-200px="activeSection = 'progression'">
+                    <div class="section-number">Section 05</div>
+                    <h2 class="section-title">Multi-Stage Progression</h2>
+                    <h4>Rounds as Entities</h4>
+                    <p>Each round is a <strong>first-class database record</strong>:</p>
+                    <ul class="step-list">
+                        <li>Isolated data per round (no overwriting previous rounds)</li>
+                        <li>Cached when complete (never re-fetched unnecessarily)</li>
+                        <li>Stage-aware (Swiss R1-R5 vs Finals SF1/SF2/F)</li>
+                    </ul>
+                    <h4>Stage Visualization</h4>
+                    <p>The tournament view adapts to show your current position in the bracket:</p>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Sticky stage header</strong> shows current stage + progress
+                        </li>
+                        <li>
+                            <strong>Wheel picker</strong> (iOS-style) for stage navigation
+                        </li>
+                        <li>
+                            <strong>Round pills</strong> show only the current stage's rounds
+                        </li>
+                        <li>
+                            <strong>Auto-navigate</strong> to new stage when generated
+                        </li>
+                    </ul>
+                    <div class="flow-diagram">
+                        <div class="flow-steps"><span class="flow-step">Swiss Stage</span><span class="flow-arrow">→</span><span class="flow-step">Finals Stage</span><span class="flow-arrow">→</span><span class="flow-step">Championship</span>
+                        </div>
+                    </div>
+                    <p>Each stage has its own rounds, standings, and progression rules. The system handles the transitions automatically.</p>
+                </section>
+                <!-- SECTION 6: SUMMARY -->
+                <section class="docs-section" id="summary" x-intersect:enter.margin.-200px="activeSection = 'summary'">
+                    <div class="section-number">Section 06</div>
+                    <h2 class="section-title">Summary</h2>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Concept</th>
+                                <th>Lives In</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Battle Mode</strong></td>
+                                <td>Holodeck</td>
+                                <td>How matches are played</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Staging</strong></td>
+                                <td>Holodeck</td>
+                                <td>How tournament progresses</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Program</strong></td>
+                                <td>Holodeck</td>
+                                <td>Combines Battle Mode + Staging</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tournament</strong></td>
+                                <td>Tournament Room</td>
+                                <td>Runs the Program with real players</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Progression Service</strong></td>
+                                <td>Backend</td>
+                                <td>"One button to advance" logic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rounds as Entities</strong></td>
+                                <td>Database</td>
+                                <td>Isolated, cached round data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tip-box" style="margin-top: 2rem;">
+                        <p><strong>The key insight:</strong> Organizers don't need to think about pairing algorithms, round counts, or stage transitions. They load a Program, register players, and tap the FAB to advance. The system handles the complexity.</p>
+                    </div>
+                </section>
+                <!-- NAVIGATION -->
+                <section class="docs-section" style="border-bottom: none;">
+                    <h2 class="section-title">Continue Learning</h2>
+                    <div class="docs-card-grid" style="margin-top: 1.5rem;"><a href="/docs/quickstart.html" class="docs-card"> <h3>Quick Start Guide</h3> <p>New to Inertia? Start here for the basics of navigation, combos, and battles.</p> </a><a href="/releases.html" class="docs-card"> <h3>Release Notes</h3> <p>See what's changed in each version and what's coming next.</p> </a>
+                    </div>
+                </section><a href="#top" class="back-to-top">↑ Back to top</a>
+                <div class="version-info">
+                    <p>Holodeck & Tournament Flow — v1.5.6</p>
+                    <p>Last updated: February 2026</p>
+                </div>
+            </div>
+            <!-- STICKY SIDEBAR TOC -->
+            <aside class="docs-sidebar">
+                <div class="docs-sidebar-inner">
+                    <h4>On This Page</h4>
+                    <ul>
+                        <li>
+                            <a href="#overview" :class="{ 'active': activeSection === 'overview' }">The Big Picture</a>
+                        </li>
+                        <li>
+                            <a href="#modules" :class="{ 'active': activeSection === 'modules' }">Creating Modules</a>
+                        </li>
+                        <li>
+                            <a href="#programs" :class="{ 'active': activeSection === 'programs' }">Assembling Programs</a>
+                        </li>
+                        <li>
+                            <a href="#tournament-flow" :class="{ 'active': activeSection === 'tournament-flow' }">Tournament Flow</a>
+                        </li>
+                        <li>
+                            <a href="#progression" :class="{ 'active': activeSection === 'progression' }">Multi-Stage Progression</a>
+                        </li>
+                        <li>
+                            <a href="#summary" :class="{ 'active': activeSection === 'summary' }">Summary</a>
+                        </li>
+                    </ul>
+                    <h4 style="margin-top: 2rem;">Documentation</h4>
+                    <ul>
+                        <li>
+                            <a href="/docs/">Overview</a>
+                        </li>
+                        <li>
+                            <a href="/docs/quickstart.html">Quick Start</a>
+                        </li>
+                        <li>
+                            <a href="/docs/holodeck-tournament.html" class="active">Holodeck & Tournaments</a>
+                        </li>
+                        <li class="coming-soon">FAQ</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <!-- FOOTER -->
+        <footer class="border-t border-gray-800 border-opacity-50 py-12">
+            <div class="container">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
+                        <p class="text-sm text-muted">© 2025. All rights reserved.</p>
+                    </div>
+                    <div class="flex space-x-8"><a href="/privacy.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a><a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

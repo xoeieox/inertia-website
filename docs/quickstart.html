@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quick Start Guide | Inertia Documentation</title>
+        <meta name="description" content="Get started with Inertia App. Learn navigation, combo building, tournament management, and battle scoring.">
+        <link href="../../css/theme.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- External Stylesheets -->
+        <link href="../css/design-tokens.css" rel="stylesheet" type="text/css">
+        <link href="../css/utilities.css" rel="stylesheet" type="text/css">
+        <link href="../css/mvp.css" rel="stylesheet" type="text/css">
+        <link href="../css/animations.css" rel="stylesheet" type="text/css">
+        <link href="../css/docs.css" rel="stylesheet" type="text/css">
+        <!-- Alpine.js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body x-data="{ activeSection: 'install' }">
+        <!-- NAVIGATION -->
+        <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex justify-between items-center h-16"><a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                            <button class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
+                                Products
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;"><a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a><a href="/docs/" class="block px-4 py-3 text-sm text-cyan bg-cyan-500 bg-opacity-10">Documentation</a><a href="/releases.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Release Notes</a><a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a><a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
+                            </div>
+                        </div><a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a><a href="/theorycrafting.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Theorycrafting</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="docs-layout">
+            <!-- MAIN CONTENT -->
+            <div class="docs-content">
+                <!-- HEADER -->
+                <header class="docs-header" id="top">
+                    <div class="docs-badge">v1.5.6</div>
+                    <h1 class="docs-title">QUICK START GUIDE</h1>
+                    <p class="docs-subtitle">Get up and running with the Inertia digital dojo</p>
+                </header>
+                <!-- MOBILE TOC -->
+                <nav class="mobile-toc">
+                    <h3>Contents</h3>
+                    <ul class="mobile-toc-list">
+                        <li>
+                            <a href="#install">Download & Install</a>
+                        </li>
+                        <li>
+                            <a href="#navigation">The Digital Dojo</a>
+                        </li>
+                        <li>
+                            <a href="#workshop">Workshop</a>
+                        </li>
+                        <li>
+                            <a href="#tournament">Tournament</a>
+                        </li>
+                        <li>
+                            <a href="#arena">Arena</a>
+                        </li>
+                        <li>
+                            <a href="#tips">Tips & Help</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- SECTION 1: INSTALL -->
+                <section class="docs-section" id="install" x-intersect:enter.margin.-200px="activeSection = 'install'">
+                    <div class="section-number">Section 01</div>
+                    <h2 class="section-title">Download & Install</h2>
+                    <p>Inertia is available for iOS and Android. The app is currently in open beta.</p>
+                    <h4>iOS (TestFlight)</h4>
+                    <ul class="step-list">
+                        <li>Download <strong>TestFlight</strong> from the App Store if you don't have it
+                        </li>
+                        <li>Open the Inertia TestFlight invite link on your device</li>
+                        <li>Tap "Accept" to join the beta, then "Install"</li>
+                        <li>Open Inertia from your home screen</li>
+                    </ul>
+                    <h4>Android (APK)</h4>
+                    <ul class="step-list">
+                        <li>Download the APK from the link provided</li>
+                        <li>Allow installation from unknown sources if prompted</li>
+                        <li>Tap the downloaded file to install</li>
+                        <li>Open Inertia from your app drawer</li>
+                    </ul>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> iOS users get automatic updates via TestFlight. Android users will receive a new APK link when updates are available.</p>
+                    </div>
+                </section>
+                <!-- SECTION 2: NAVIGATION -->
+                <section class="docs-section" id="navigation" x-intersect:enter.margin.-200px="activeSection = 'navigation'">
+                    <div class="section-number">Section 02</div>
+                    <h2 class="section-title">The Digital Dojo</h2>
+                    <p>Inertia is organized as a <span class="key-term">digital dojo</span> — a spatial environment with distinct rooms for different activities. Think of it like navigating a physical space rather than clicking through menus.</p>
+                    <h4>The Room Grid</h4>
+                    <p>Nine rooms arranged in a 3×3 grid, each serving a specific purpose:</p>
+                    <div class="room-grid">
+                        <div class="room-cell">Lab</div>
+                        <div class="room-cell highlighted">Workshop</div>
+                        <div class="room-cell">Metascope</div>
+                        <div class="room-cell">Holodeck</div>
+                        <div class="room-cell center highlighted">Arena</div>
+                        <div class="room-cell highlighted">Tournament</div>
+                        <div class="room-cell">Garden</div>
+                        <div class="room-cell">Quarters</div>
+                        <div class="room-cell">Potential</div>
+                    </div>
+                    <p style="text-align: center; font-size: 0.85rem; color: rgba(245, 245, 245, 0.5); margin-top: 0.5rem;">Highlighted rooms are covered in this guide</p>
+                    <h4>How to Navigate</h4>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Bottom Bar:</strong> Each room has contextual actions at the bottom of the screen. Tap to switch views or trigger room-specific functions.
+                        </li>
+                        <li>
+                            <strong>Swipe Up:</strong> From anywhere in the app, swipe up from the bottom bar to reveal the navigation drawer with the full room grid.
+                        </li>
+                        <li>
+                            <strong>Tap to Navigate:</strong> Tap any room in the grid to go there instantly. Drag down to cancel.
+                        </li>
+                    </ul>
+                    <h4>Key Rooms</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Room</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Arena</strong></td>
+                                <td>Battle scorekeeper — score matches with one-touch finish types</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Workshop</strong></td>
+                                <td>Combo builder — create and organize your Beyblade combinations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tournament</strong></td>
+                                <td>Competition hub — run events with role-based views for players, judges, and organizers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Holodeck</strong></td>
+                                <td>Program builder — create reusable tournament configurations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quarters</strong></td>
+                                <td>Settings — profile, data backup, and app preferences</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tip-box">
+                        <p><strong>Entry Point:</strong> When you open the app, you'll land in the Tournament selector. From there, you can create/join tournaments or swipe up to explore other rooms.</p>
+                    </div>
+                </section>
+                <!-- SECTION 3: WORKSHOP -->
+                <section class="docs-section" id="workshop" x-intersect:enter.margin.-200px="activeSection = 'workshop'">
+                    <div class="section-number">Section 03</div>
+                    <h2 class="section-title">Workshop: Building Combos</h2>
+                    <p>The Workshop is where you build and manage your Beyblade combinations. Before entering tournaments, you'll want combos saved here.</p>
+                    <h4>Creating a Combo</h4>
+                    <ul class="step-list">
+                        <li>Navigate to <strong>Workshop</strong> (swipe up from bottom bar, tap Workshop)
+                        </li>
+                        <li>Tap the <strong>+</strong> button or start building in the combo builder
+                        </li>
+                        <li>Select parts for each slot: <span class="key-term">Blade</span>, <span class="key-term">Ratchet</span>, and <span class="key-term">Bit</span>
+                        </li>
+                        <li>For 5-part CX combos, the builder will show additional slots for Main Blade, Assist Blade, and Lock Chip</li>
+                        <li>Tap <strong>Save</strong> to add the combo to your collection
+                        </li>
+                    </ul>
+                    <h4>Voice Input</h4>
+                    <p>Tap the microphone icon and speak your combo naturally:</p>
+                    <p style="font-style: italic; color: var(--cyan);">"Shark Edge 3-60 Taper"</p>
+                    <p>The app parses and fills in the parts automatically — great for quickly building multiple combos.</p>
+                    <h4>Cases System</h4>
+                    <p>Organize your combos into <span class="key-term">Cases</span> — think of them as folders:</p>
+                    <ul class="step-list">
+                        <li>Create cases like "Tournament Ready," "Testing," or "Stamina Builds"</li>
+                        <li>Add combos to cases for easy access during battles</li>
+                        <li>Cases sync to the cloud across your devices</li>
+                    </ul>
+                    <div class="tip-box">
+                        <p><strong>For Tournaments:</strong> 3v3 format requires exactly 3 combos in your deck. Make sure to save at least 3 combos before registering.</p>
+                    </div>
+                </section>
+                <!-- SECTION 4: TOURNAMENT -->
+                <section class="docs-section" id="tournament" x-intersect:enter.margin.-200px="activeSection = 'tournament'">
+                    <div class="section-number">Section 04</div>
+                    <h2 class="section-title">Tournament: Running Events</h2>
+                    <p>The Tournament room is the heart of competitive play. Whether you're a player joining an event or an organizer running one, this is where it happens.</p>
+                    <h4>Creating a Tournament (Organizers)</h4>
+                    <ul class="step-list">
+                        <li>Navigate to <strong>Tournament</strong> room
+                        </li>
+                        <li>Tap <strong>Create Tournament</strong>
+                        </li>
+                        <li>Load a <span class="key-term">Program</span> from Holodeck (or use a template)
+                        </li>
+                        <li>The Program sets all match rules and tournament structure automatically</li>
+                        <li>Share the QR code with players for registration</li>
+                    </ul>
+                    <h4>The New Flow (v1.5.6+)</h4>
+                    <p>Tournament progression is now driven by a single <span class="key-term">floating action button (FAB)</span> that always shows the next logical action:</p>
+                    <div class="flow-diagram">
+                        <div class="flow-steps"><span class="flow-step">Register Players</span><span class="flow-arrow">→</span><span class="flow-step">Start Tournament</span><span class="flow-arrow">→</span><span class="flow-step">Generate Rounds</span><span class="flow-arrow">→</span><span class="flow-step">Advance Stages</span><span class="flow-arrow">→</span><span class="flow-step">Complete</span>
+                        </div>
+                    </div>
+                    <p>No need to manually trigger round generation or figure out when to advance. The FAB tells you what to do next.</p>
+                    <h4>Role-Based Views</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>What You See</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Player</strong></td>
+                                <td>Your matches, standings, and deck management</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Judge</strong></td>
+                                <td>Assigned matches, combo verification, match submission</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Organizer</strong></td>
+                                <td>Full control — tables, queue, player management, round generation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Shōmen (Organizer Command Center)</h4>
+                    <p>As an organizer, access <span class="key-term">Shōmen</span> from the bottom bar for advanced controls:</p>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Setup:</strong> Tournament settings, QR code, add/remove players
+                        </li>
+                        <li>
+                            <strong>Management:</strong> Judge assignments, manual pairing overrides
+                        </li>
+                        <li>
+                            <strong>Results:</strong> Standings, match history, WBO export
+                        </li>
+                    </ul>
+                    <div class="tip-box">
+                        <p><strong>WBO Ranked Auto:</strong> For WBO events, use "WBO Ranked Auto" staging. The tournament structure automatically configures based on player count — 16 players gets Swiss 5R → Top 8, 40 players gets Swiss 6R → Top 16, etc.</p>
+                    </div>
+                </section>
+                <!-- SECTION 5: ARENA -->
+                <section class="docs-section" id="arena" x-intersect:enter.margin.-200px="activeSection = 'arena'">
+                    <div class="section-number">Section 05</div>
+                    <h2 class="section-title">Arena: Scoring Battles</h2>
+                    <p>The Arena is where battles are scored. It works for casual practice, testing sessions, and official tournament matches.</p>
+                    <h4>Scoring Points</h4>
+                    <p>Tap the finish type under the winning player's side:</p>
+                    <div class="score-grid">
+                        <div class="score-card">
+                            <div class="points">1</div>
+                            <div class="label">Spin Finish</div>
+                        </div>
+                        <div class="score-card">
+                            <div class="points">2</div>
+                            <div class="label">Burst Finish</div>
+                        </div>
+                        <div class="score-card">
+                            <div class="points">2</div>
+                            <div class="label">Over Finish</div>
+                        </div>
+                        <div class="score-card">
+                            <div class="points">3</div>
+                            <div class="label">Extreme Finish</div>
+                        </div>
+                    </div>
+                    <p><strong>Ring Out</strong> behavior depends on tournament settings — either redo the round or award configurable points.</p>
+                    <h4>3v3 Deck System</h4>
+                    <p>In tournament mode with 3v3 format:</p>
+                    <ul class="step-list">
+                        <li>Each player's current combo is displayed as a card on screen</li>
+                        <li>Tap the winning combo card, then tap the finish type</li>
+                        <li>The next combo in the deck becomes active automatically</li>
+                        <li>When prompted, shuffle decks to match the physical order (or use Smart Shuffle)</li>
+                    </ul>
+                    <h4>Side Tray & Deck Dock</h4>
+                    <p>Access your cases and combos without leaving the battle screen:</p>
+                    <ul class="step-list">
+                        <li>
+                            <strong>Side Tray:</strong> Swipe from the edge to access your combo cases
+                        </li>
+                        <li>
+                            <strong>Deck Dock:</strong> Manage your 3-slot deck with live part swapping
+                        </li>
+                    </ul>
+                    <h4>Match Completion</h4>
+                    <p>When one player reaches the point goal:</p>
+                    <ul class="step-list">
+                        <li>Tap "Submit" to confirm the match result</li>
+                        <li>Results save to the tournament automatically</li>
+                        <li>Player records update in real-time</li>
+                        <li>You're returned to the tournament view</li>
+                    </ul>
+                    <div class="warning-box">
+                        <p><strong>Important:</strong> Match results sync in real-time. Make sure you have a stable internet connection during tournaments.</p>
+                    </div>
+                </section>
+                <!-- SECTION 6: TIPS -->
+                <section class="docs-section" id="tips" x-intersect:enter.margin.-200px="activeSection = 'tips'">
+                    <div class="section-number">Section 06</div>
+                    <h2 class="section-title">Tips & Help</h2>
+                    <h4>Before Your Tournament</h4>
+                    <ul class="step-list">
+                        <li>Run a practice tournament with test players first (use the "Generate Test Players" button in Shōmen Setup)</li>
+                        <li>Make sure all judges understand the Arena scoring flow</li>
+                        <li>Test the QR code registration with a friend</li>
+                        <li>Have a backup scoring method ready just in case</li>
+                    </ul>
+                    <h4>Common Issues</h4>
+                    <div class="tip-box">
+                        <p><strong>Can't see the navigation drawer?</strong> Make sure you're swiping up from the bottom bar itself, not just the bottom of the screen.</p>
+                    </div>
+                    <div class="tip-box">
+                        <p><strong>Tournament not advancing?</strong> Check that all matches in the current round are complete. The FAB will show the next action when ready.</p>
+                    </div>
+                    <div class="tip-box">
+                        <p><strong>Match not saving?</strong> Check your internet connection. Results sync to the server in real-time — poor connectivity can cause delays.</p>
+                    </div>
+                    <h4>Feedback & Bug Reports</h4>
+                    <p>Found a bug or have a suggestion?</p>
+                    <ul class="step-list">
+                        <li>Take a screenshot of the issue if possible</li>
+                        <li>Note what you were doing when it happened</li>
+                        <li>Send feedback via Discord or email to <a href="mailto:contact@inertia.cx" style="color: var(--cyan);">contact@inertia.cx</a>
+                        </li>
+                    </ul>
+                    <div class="warning-box">
+                        <p><strong>Remember:</strong> This is beta software. Your feedback directly shapes what we build next.</p>
+                    </div>
+                </section>
+                <!-- NEXT STEPS -->
+                <section class="docs-section" style="border-bottom: none;">
+                    <h2 class="section-title">What's Next?</h2>
+                    <p>Ready to go deeper? Check out these resources:</p>
+                    <div class="docs-card-grid" style="margin-top: 1.5rem;"><a href="/docs/holodeck-tournament.html" class="docs-card"> <h3>Holodeck & Tournaments</h3> <p>Learn about Programs, Battle Modes, and Staging. Understand the full tournament architecture.</p> </a><a href="/releases.html" class="docs-card"> <h3>Release Notes</h3> <p>See what's new in each version and track the development journey.</p> </a>
+                    </div>
+                </section><a href="#top" class="back-to-top">↑ Back to top</a>
+                <div class="version-info">
+                    <p>Quick Start Guide — v1.5.6</p>
+                    <p>Last updated: February 2026</p>
+                </div>
+            </div>
+            <!-- STICKY SIDEBAR TOC -->
+            <aside class="docs-sidebar">
+                <div class="docs-sidebar-inner">
+                    <h4>On This Page</h4>
+                    <ul>
+                        <li>
+                            <a href="#install" :class="{ 'active': activeSection === 'install' }">Download & Install</a>
+                        </li>
+                        <li>
+                            <a href="#navigation" :class="{ 'active': activeSection === 'navigation' }">The Digital Dojo</a>
+                        </li>
+                        <li>
+                            <a href="#workshop" :class="{ 'active': activeSection === 'workshop' }">Workshop</a>
+                        </li>
+                        <li>
+                            <a href="#tournament" :class="{ 'active': activeSection === 'tournament' }">Tournament</a>
+                        </li>
+                        <li>
+                            <a href="#arena" :class="{ 'active': activeSection === 'arena' }">Arena</a>
+                        </li>
+                        <li>
+                            <a href="#tips" :class="{ 'active': activeSection === 'tips' }">Tips & Help</a>
+                        </li>
+                    </ul>
+                    <h4 style="margin-top: 2rem;">Documentation</h4>
+                    <ul>
+                        <li>
+                            <a href="/docs/">Overview</a>
+                        </li>
+                        <li>
+                            <a href="/docs/quickstart.html" class="active">Quick Start</a>
+                        </li>
+                        <li>
+                            <a href="/docs/holodeck-tournament.html">Holodeck & Tournaments</a>
+                        </li>
+                        <li class="coming-soon">FAQ</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <!-- FOOTER -->
+        <footer class="border-t border-gray-800 border-opacity-50 py-12">
+            <div class="container">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
+                        <p class="text-sm text-muted">© 2025. All rights reserved.</p>
+                    </div>
+                    <div class="flex space-x-8"><a href="/privacy.html" class="text-sm text-muted hover:text-cyan transition-colors">Privacy</a><a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
