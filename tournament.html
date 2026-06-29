@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournament Viewer | Inertia</title>
+  <meta name="description" content="Live tournament brackets, standings, and match data for Beyblade X events powered by Inertia.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tournament Viewer | Inertia">
+  <meta property="og:description" content="Live Beyblade X tournament brackets and standings.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts & Stylesheets -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/design-tokens.css" rel="stylesheet">
+  <link href="css/utilities.css" rel="stylesheet">
+  <link href="css/mvp.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/tournament.css" rel="stylesheet">
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Shared tournament module -->
+  <script src="js/tournament-shared.js"></script>
+  <script src="js/deck-type-colors.js"></script>
+</head>
+<body class="tournament-page" :class="{ 'tv-mode': tvMode }" x-data="tournamentDetail()" x-init="init()">
+
+  <!-- LOADING STATE -->
+  <template x-if="loading">
+    <div class="tournament-loading min-h-screen">
+      <div class="spinner"></div>
+      <p style="color: rgba(245,245,245,0.4); font-size: 0.9rem;">Loading tournament...</p>
+    </div>
+  </template>
+
+  <!-- ERROR STATE -->
+  <template x-if="error && !loading">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="error-state">
+        <div class="error-icon">!</div>
+        <h2 style="font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem;">Tournament Not Found</h2>
+        <p class="error-message" x-text="error"></p>
+        <a href="/tournaments.html" class="retry-btn" style="text-decoration: none;">Browse Tournaments</a>
+      </div>
+    </div>
+  </template>
+
+  <!-- MAIN CONTENT -->
+  <template x-if="!loading && !error && tournament">
+    <div class="min-h-screen">
+
+      <!-- STICKY HEADER -->
+      <header class="tournament-header">
+        <div class="header-inner">
+          <div class="header-top">
+            <div class="header-left">
+              <a href="/tournaments.html" class="back-link" title="Back to tournaments">&larr;</a>
+              <h1 class="tournament-name" x-text="tournament.name"></h1>
+              <span class="status-badge" :class="isLive ? 'live' : 'completed'"
+                    x-text="isLive ? 'Live' : 'Completed'"></span>
+            </div>
+            <div class="header-actions">
+              <a x-show="livestreamUrl" :href="livestreamUrl" target="_blank" rel="noopener"
+                 class="livestream-btn">
+                &#9679; Watch Live
+              </a>
+              <button class="share-btn" @click="copyShareLink()" title="Copy link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="meta-line">
+            <span x-text="formatLabel(tournament.format)"></span>
+            <span class="meta-separator">&middot;</span>
+            <span>Round <span x-text="tournament.current_round || 1"></span></span>
+            <span class="meta-separator">&middot;</span>
+            <span><span x-text="standings.length"></span> players</span>
+            <span class="meta-separator">&middot;</span>
+            <span x-text="formatDate(tournament.started_at)"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- PROGRAM FLOW CHART -->
+      <section class="flowchart-section" x-show="stages.length > 1">
+        <div class="flowchart">
+          <template x-for="(stage, index) in stages" :key="stage.stageId">
+            <div class="flowchart-item">
+              <!-- Arrow connector (not on first) -->
+              <div class="flowchart-arrow" x-show="index > 0">
+                <svg width="28" height="14" viewBox="0 0 28 14">
+                  <line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" stroke-width="1.5"/>
+                  <polygon points="22,3 28,7 22,11" fill="currentColor"/>
+                </svg>
+              </div>
+              <!-- Stage block -->
+              <div class="flowchart-stage"
+                   :class="getStageStatusClass(stage.stageId)">
+                <div class="flowchart-stage-name" x-text="stage.displayName"></div>
+                <div class="flowchart-stage-detail">
+                  <span x-show="stage.roundCount" x-text="stage.roundCount + ' rounds'"></span>
+                  <span x-show="stage.isAutoRoundCount">Auto</span>
+                  <span x-show="stage.advancementCount" x-text="'Top ' + stage.advancementCount"></span>
+                </div>
+                <div class="flowchart-stage-status">
+                  <template x-if="getStageStatusClass(stage.stageId) === 'active'">
+                    <span>&#9673; Active</span>
+                  </template>
+                  <template x-if="getStageStatusClass(stage.stageId) === 'completed'">
+                    <span>&#10003; Done</span>
+                  </template>
+                  <template x-if="getStageStatusClass(stage.stageId) === 'pending'">
+                    <span>&#9675; Pending</span>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
+
+      <!-- TAB NAVIGATION -->
+      <nav class="tab-bar">
+        <button class="tab-btn" :class="{ active: activeTab === 'standings' }"
+                @click="activeTab = 'standings'">Standings</button>
+        <button class="tab-btn" :class="{ active: activeTab === 'live' }"
+                @click="activeTab = 'live'" x-show="liveTableCount > 0">
+          Live <span class="count-badge" x-text="liveTableCount"></span>
+        </button>
+        <button class="tab-btn" :class="{ active: activeTab === 'matches' }"
+                @click="activeTab = 'matches'">All Matches</button>
+      </nav>
+
+      <!-- TAB CONTENT -->
+
+      <!-- STANDINGS TAB -->
+      <div class="tab-content" x-show="activeTab === 'standings'" x-transition>
+        <template x-if="standings.length === 0">
+          <div class="empty-state">
+            <p>No standings available yet.</p>
+          </div>
+        </template>
+        <template x-if="standings.length > 0">
+          <div>
+            <div class="standings-header">
+              <div>Rank</div>
+              <div>Player</div>
+              <div style="text-align: center;">Record</div>
+              <div style="text-align: center;">Games</div>
+              <div class="col-buchholz" style="text-align: center;">BH</div>
+            </div>
+            <template x-for="(player, index) in standings" :key="player.name + index">
+              <div class="standings-row" :class="{ 'top-3': index < 3 }">
+                <!-- Rank -->
+                <div>
+                  <div class="rank-badge"
+                       :class="index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'rank-default'"
+                       x-text="player.rank || (index + 1)"></div>
+                </div>
+                <!-- Player Name -->
+                <div class="player-name-cell">
+                  <div class="player-color-dot" :style="'background-color:' + (player.color || '#808080')"></div>
+                  <span class="player-name-text" x-text="player.name"></span>
+                </div>
+                <!-- Match Record -->
+                <div class="stat-cell">
+                  <span x-text="(player.match_wins || 0) + '-' + (player.match_losses || 0)"></span>
+                </div>
+                <!-- Game Differential -->
+                <div class="stat-cell">
+                  <span x-text="player.game_differential !== undefined ? (player.game_differential >= 0 ? '+' : '') + player.game_differential : '—'"></span>
+                </div>
+                <!-- Buchholz -->
+                <div class="stat-cell col-buchholz">
+                  <span x-text="player.buchholz !== undefined ? Number(player.buchholz).toFixed(1) : '—'"></span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <!-- LIVE MATCHES TAB -->
+      <div class="tab-content" x-show="activeTab === 'live'" x-transition>
+        <template x-if="tables.length === 0">
+          <div class="empty-state">
+            <p>No matches currently in progress.</p>
+          </div>
+        </template>
+        <template x-if="tables.length > 0">
+          <div class="live-grid">
+            <template x-for="table in tables" :key="table.table_number || table.match_id">
+              <div class="live-match-card" :class="{ 'in-progress': table.status === 'in_progress' }"
+                   @click="openTableMatch(table)">
+                <div class="table-label">
+                  Table <span x-text="table.table_number"></span>
+                  <span class="match-status-dot" :class="table.status"
+                        x-text="table.status === 'in_progress' ? '●' : table.status === 'pending' ? '○' : '✓'"></span>
+                </div>
+
+                <!-- Left Player -->
+                <div class="live-player-row">
+                  <div class="live-player-info">
+                    <div class="player-color-dot" :style="'background-color:' + (table.left_player?.color || '#808080')"></div>
+                    <span class="live-player-name"
+                          :style="'color:' + (table.left_player?.color || '#fff')"
+                          :class="{ 'opacity-50': table.right_player?.is_winner }"
+                          x-text="table.left_player?.name || 'TBD'"></span>
+                  </div>
+                  <div class="live-player-scoring">
+                    <div class="score-dots" x-html="renderScoreDotsHTML(table.left_player?.score || 0, table.point_goal || tournament.point_goal || 3)"></div>
+                    <div class="win-history" x-html="renderWinHistoryHTML(table.left_player?.win_history || [])"></div>
+                  </div>
+                </div>
+
+                <!-- Right Player -->
+                <div class="live-player-row">
+                  <div class="live-player-info">
+                    <div class="player-color-dot" :style="'background-color:' + (table.right_player?.color || '#808080')"></div>
+                    <span class="live-player-name"
+                          :style="'color:' + (table.right_player?.color || '#fff')"
+                          :class="{ 'opacity-50': table.left_player?.is_winner }"
+                          x-text="table.right_player?.name || 'TBD'"></span>
+                  </div>
+                  <div class="live-player-scoring">
+                    <div class="score-dots" x-html="renderScoreDotsHTML(table.right_player?.score || 0, table.point_goal || tournament.point_goal || 3)"></div>
+                    <div class="win-history" x-html="renderWinHistoryHTML(table.right_player?.win_history || [])"></div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <!-- ALL MATCHES TAB -->
+      <div class="tab-content" x-show="activeTab === 'matches'" x-transition>
+        <template x-if="allMatches.length === 0">
+          <div class="empty-state">
+            <p>No matches yet.</p>
+          </div>
+        </template>
+        <template x-if="allMatches.length > 0">
+          <div>
+            <!-- Round Selector Pills -->
+            <div class="round-selector">
+              <template x-for="round in roundNumbers" :key="round">
+                <button class="round-pill" :class="{ active: selectedRound === round }"
+                        @click="selectedRound = round"
+                        x-text="getRoundLabel(round)"></button>
+              </template>
+            </div>
+
+            <!-- Matches for selected round -->
+            <template x-for="match in matchesForRound" :key="match.id">
+              <div class="match-row" :class="{ bye: isBye(match) }"
+                   @click="!isBye(match) && openAllMatch(match)">
+
+                <div class="match-players">
+                  <!-- Left player -->
+                  <div class="match-player-left">
+                    <span class="match-player-name"
+                          :class="getWinnerClass(match, 'left')"
+                          x-text="getLeftName(match)"></span>
+                  </div>
+
+                  <!-- Score -->
+                  <div class="match-score-center">
+                    <span class="score-value" :class="{ highlight: isLeftWinner(match) }"
+                          x-text="getLeftScore(match)"></span>
+                    <span class="score-dash">-</span>
+                    <span class="score-value" :class="{ highlight: isRightWinner(match) }"
+                          x-text="getRightScore(match)"></span>
+                  </div>
+
+                  <!-- Right player -->
+                  <div class="match-player-right">
+                    <span class="match-player-name"
+                          :class="getWinnerClass(match, 'right')"
+                          x-text="getRightName(match)"></span>
+                  </div>
+                </div>
+
+                <!-- Status icon -->
+                <div class="match-status-icon">
+                  <span x-show="match.status === 'completed'" style="color: #81c784;">&#10003;</span>
+                  <span x-show="match.status === 'in_progress'" style="color: #FFD700; animation: pulse-live 2s infinite;">&#9679;</span>
+                  <span x-show="match.status === 'pending'" style="color: rgba(245,245,245,0.2);">&#9675;</span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <!-- MATCH DETAIL MODAL -->
+      <div x-show="selectedMatch"
+           x-transition:enter="transition ease-out duration-200"
+           x-transition:enter-start="opacity-0"
+           x-transition:enter-end="opacity-100"
+           x-transition:leave="transition ease-in duration-150"
+           x-transition:leave-start="opacity-100"
+           x-transition:leave-end="opacity-0"
+           class="match-modal-backdrop"
+           @click.self="selectedMatch = null">
+
+        <div class="match-modal"
+             x-show="selectedMatch"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100">
+
+          <template x-if="selectedMatch">
+            <div>
+              <!-- Header -->
+              <div class="match-modal-header">
+                <span class="modal-title">
+                  Round <span x-text="selectedMatch.round"></span>
+                  <template x-if="selectedMatch.tableNumber">
+                    <span> &middot; Table <span x-text="selectedMatch.tableNumber"></span></span>
+                  </template>
+                </span>
+                <button class="close-btn" @click="selectedMatch = null">&times;</button>
+              </div>
+
+              <!-- Player Panels -->
+              <div class="modal-players">
+                <!-- Left Player -->
+                <div class="modal-player-panel left"
+                     :class="{ winner: selectedMatch.leftPlayer.isWinner, loser: selectedMatch.rightPlayer.isWinner && !selectedMatch.leftPlayer.isWinner }">
+                  <div class="player-color-bar" :style="'background-color:' + selectedMatch.leftPlayer.color"></div>
+                  <div class="modal-player-name" :style="'color:' + selectedMatch.leftPlayer.color"
+                       x-text="selectedMatch.leftPlayer.name"></div>
+                  <div class="modal-player-combo" x-text="selectedMatch.leftPlayer.combo" x-show="selectedMatch.leftPlayer.combo"></div>
+                  <div class="modal-player-side" x-show="selectedMatch.leftPlayer.stadiumSide"
+                       x-text="selectedMatch.leftPlayer.stadiumSide === 'b_side' ? 'B-Side' : 'X-Side'"></div>
+                  <div class="score-dots" x-html="renderScoreDotsHTML(selectedMatch.leftPlayer.score, selectedMatch.pointGoal)"></div>
+                  <div class="win-history" x-html="renderWinHistoryHTML(selectedMatch.leftPlayer.winHistory)"></div>
+                </div>
+
+                <!-- VS -->
+                <div class="modal-vs">VS</div>
+
+                <!-- Right Player -->
+                <div class="modal-player-panel right"
+                     :class="{ winner: selectedMatch.rightPlayer.isWinner, loser: selectedMatch.leftPlayer.isWinner && !selectedMatch.rightPlayer.isWinner }">
+                  <div class="player-color-bar" :style="'background-color:' + selectedMatch.rightPlayer.color"></div>
+                  <div class="modal-player-name" :style="'color:' + selectedMatch.rightPlayer.color"
+                       x-text="selectedMatch.rightPlayer.name"></div>
+                  <div class="modal-player-combo" x-text="selectedMatch.rightPlayer.combo" x-show="selectedMatch.rightPlayer.combo"></div>
+                  <div class="modal-player-side" x-show="selectedMatch.rightPlayer.stadiumSide"
+                       x-text="selectedMatch.rightPlayer.stadiumSide === 'b_side' ? 'B-Side' : 'X-Side'"></div>
+                  <div class="score-dots" x-html="renderScoreDotsHTML(selectedMatch.rightPlayer.score, selectedMatch.pointGoal)"></div>
+                  <div class="win-history" x-html="renderWinHistoryHTML(selectedMatch.rightPlayer.winHistory)"></div>
+                </div>
+              </div>
+
+              <!-- Watch Live Button -->
+              <div class="modal-livestream" x-show="livestreamUrl">
+                <a :href="livestreamUrl" target="_blank" rel="noopener" class="modal-livestream-btn">
+                  &#9679; Watch Live
+                </a>
+              </div>
+
+              <!-- Metadata -->
+              <div class="modal-meta">
+                <span x-show="selectedMatch.judge">Judge: <span x-text="selectedMatch.judge"></span></span>
+                <span x-show="selectedMatch.status === 'completed'">Completed</span>
+                <span x-show="selectedMatch.status === 'in_progress'" style="color: #81c784;">In Progress</span>
+                <span x-show="selectedMatch.status === 'pending'" style="color: var(--gold);">Pending</span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="relative py-8 mt-12" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="max-w-7xl mx-auto px-6 text-center" style="font-size: 0.8rem; color: rgba(245,245,245,0.3);">
+          Powered by <a href="/" style="color: var(--cyan); text-decoration: none;">Inertia</a>
+        </div>
+      </footer>
+
+    </div>
+  </template>
+
+  <script>
+    function tournamentDetail() {
+      return {
+        // Data
+        tournament: null,
+        standings: [],
+        tables: [],
+        allMatches: [],
+        stages: [],
+        livestreamUrl: null,
+
+        // UI State
+        loading: true,
+        error: null,
+        activeTab: 'standings',
+        selectedMatch: null,
+        selectedRound: null,
+        pollingInterval: null,
+        tvMode: false,
+
+        get tournamentId() {
+          return new URLSearchParams(location.search).get('id')
+              || new URLSearchParams(location.search).get('tournament_id');
+        },
+
+        get isLive() {
+          return this.tournament && this.tournament.started_at && !this.tournament.finished_at;
+        },
+
+        get liveTableCount() {
+          return this.tables.filter(t => t.status === 'in_progress' || t.status === 'pending').length;
+        },
+
+        get roundNumbers() {
+          const rounds = [...new Set(this.allMatches.map(m => m.round))].sort((a, b) => a - b);
+          return rounds;
+        },
+
+        get matchesForRound() {
+          if (!this.selectedRound) return [];
+          return this.allMatches
+            .filter(m => m.round === this.selectedRound)
+            .sort((a, b) => (a.table_number || 999) - (b.table_number || 999));
+        },
+
+        async init() {
+          // Check for TV mode
+          this.tvMode = new URLSearchParams(location.search).get('tv') === '1';
+
+          if (!this.tournamentId) {
+            this.error = 'No tournament ID provided. Use ?id=YOUR_TOURNAMENT_ID';
+            this.loading = false;
+            return;
+          }
+
+          try {
+            await this.fetchTournamentData();
+
+            // Fetch supplementary data (stages, livestream URL) once
+            await this.fetchSupplementaryData();
+
+            // Set default tab
+            if (this.isLive && this.liveTableCount > 0) {
+              this.activeTab = 'live';
+            } else {
+              this.activeTab = 'standings';
+            }
+
+            // Set default round to latest
+            if (this.roundNumbers.length > 0) {
+              this.selectedRound = this.roundNumbers[this.roundNumbers.length - 1];
+            }
+
+            // Start polling if live
+            if (this.isLive) {
+              this.pollingInterval = setInterval(() => this.fetchTournamentData(), 1000);
+            }
+
+            this.loading = false;
+          } catch (err) {
+            console.error('Tournament detail fetch error:', err);
+            this.error = err.message || 'Failed to load tournament';
+            this.loading = false;
+          }
+        },
+
+        async fetchTournamentData() {
+          const response = await fetch(`${TOURNAMENT_LIVE_URL}?tournament_id=${this.tournamentId}`);
+          if (!response.ok) {
+            const err = await response.json().catch(() => ({}));
+            throw new Error(err.error || `HTTP ${response.status}`);
+          }
+
+          const data = await response.json();
+          this.tournament = data.tournament;
+          this.tables = data.tables || [];
+          this.allMatches = data.all_matches || [];
+          this.standings = data.standings || [];
+
+          // Update page title
+          if (this.tournament?.name) {
+            document.title = `${this.tournament.name} | Inertia`;
+          }
+
+          // If tournament just completed, stop polling
+          if (!this.isLive && this.pollingInterval) {
+            clearInterval(this.pollingInterval);
+            this.pollingInterval = null;
+          }
+        },
+
+        async fetchSupplementaryData() {
+          if (!supabaseClient) return;
+
+          try {
+            const { data, error } = await supabaseClient
+              .from('tournaments')
+              .select('progression_config, resolved_staging_snapshot, stage_config_snapshots, livestream_url, finalist_count, resolved_swiss_rounds')
+              .eq('id', this.tournamentId)
+              .single();
+
+            if (error) {
+              console.warn('Supplementary data fetch error:', error);
+              return;
+            }
+
+            if (data) {
+              // Parse stages
+              const merged = { ...this.tournament, ...data };
+              this.stages = parseStages(merged);
+              this.livestreamUrl = data.livestream_url || null;
+            }
+          } catch (err) {
+            console.warn('Supplementary data fetch error:', err);
+          }
+        },
+
+        getStageStatusClass(stageId) {
+          return getStageStatus(stageId, this.tournament, this.stages);
+        },
+
+        // ==================
+        // ALL MATCHES HELPERS
+        // ==================
+
+        getRoundLabel(round) {
+          const matchTypes = this.allMatches.filter(m => m.round === round);
+          const type = matchTypes[0]?.match_type;
+          if (type === 'championship' || type === 'finals') return 'Finals';
+          if (type === 'semifinal' || type === 'semifinals') return 'Semis';
+          if (type === 'consolation') return 'Consolation';
+          return `Round ${round}`;
+        },
+
+        getLeftName(match) {
+          return match.red_player_name || match.player1_name || 'TBD';
+        },
+
+        getRightName(match) {
+          if (this.isBye(match)) return 'BYE';
+          return match.blue_player_name || match.player2_name || 'TBD';
+        },
+
+        getLeftScore(match) {
+          if (match.status === 'pending') return '–';
+          return match.red_score ?? match.player1_score ?? '–';
+        },
+
+        getRightScore(match) {
+          if (match.status === 'pending' || this.isBye(match)) return '–';
+          return match.blue_score ?? match.player2_score ?? '–';
+        },
+
+        isLeftWinner(match) {
+          if (match.winner_side) return match.winner_side === 'red';
+          return match.winner_id && match.winner_id === (match.red_player_id || match.player1_id);
+        },
+
+        isRightWinner(match) {
+          if (match.winner_side) return match.winner_side === 'blue';
+          return match.winner_id && match.winner_id === (match.blue_player_id || match.player2_id);
+        },
+
+        getWinnerClass(match, side) {
+          if (match.status !== 'completed') return '';
+          if (side === 'left') return this.isLeftWinner(match) ? 'winner' : 'loser';
+          return this.isRightWinner(match) ? 'winner' : 'loser';
+        },
+
+        isBye(match) {
+          return match.is_forfeit || (!match.player2_id && !match.blue_player_id && !match.player2_name && !match.blue_player_name);
+        },
+
+        // ==================
+        // MATCH MODAL
+        // ==================
+
+        openTableMatch(table) {
+          this.selectedMatch = normalizeTableMatch(table);
+        },
+
+        openAllMatch(match) {
+          this.selectedMatch = normalizeAllMatch(match, this.tournament?.point_goal);
+        },
+
+        copyShareLink() {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            // Brief visual feedback could go here
+          });
+        },
+
+        // Cleanup
+        destroy() {
+          if (this.pollingInterval) {
+            clearInterval(this.pollingInterval);
+          }
+        }
+      };
+    }
+  </script>
+</body>
+</html>

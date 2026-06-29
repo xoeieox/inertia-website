@@ -3,7 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inertia - Competitive Battling Tops, Elevated</title>
+        <title>Inertia — The Open Home for Battling-Top Design</title>
+        <meta name="description" content="Inertia is the open, attribution-native home for original battling-top designs. Deposit a design, play it in real physics, fork it, print it — credit and payment follow the work. Built on the open Zephyr protocol.">
+        <meta property="og:title" content="Inertia — The Open Home for Battling-Top Design">
+        <meta property="og:description" content="Design custom battling tops, play them in real geometry-driven physics, and keep credit — and a cut — when others build on your work.">
+        <meta property="og:type" content="website">
+        <link href="../css/theme.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
         <!-- External Stylesheets -->
@@ -21,29 +26,9 @@
             <nav class="fixed top-0 w-full z-50 transition-all duration-300" style="background-color: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px);">
                 <div class="max-w-7xl mx-auto px-6">
                     <div class="flex justify-between items-center h-16">
-                        <!-- Logo -->
-                        <a href="/" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
+                        <!-- Logo --><a href="index.html" class="flex items-center"> <span class="text-2xl font-thin tracking-widest text-frost">INERTIA</span> </a>
                         <!-- Navigation Links -->
-                        <div class="hidden md:flex items-center space-x-8">
-                            <!-- Products Dropdown -->
-                            <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                                <button class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase flex items-center gap-1" style="background: transparent !important; border: none !important; padding: 0; cursor: pointer;">
-                                    Products
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                                <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute left-0 mt-2 w-48 rounded-lg bg-steel border border-cyan-500 border-opacity-20 shadow-lg overflow-hidden" style="display: none;">
-                                    <a href="/products/app.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Inertia App</a>
-                                    <a href="/docs/" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Documentation</a>
-                                    <a href="/releases.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Release Notes</a>
-                                    <a href="/products/insight.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Insight</a>
-                                    <a href="/products/axis.html" class="block px-4 py-3 text-sm text-gray-200 hover:bg-cyan-500 hover:bg-opacity-10 hover:text-cyan transition-colors">Axis</a>
-                                </div>
-                            </div>
-                            <a href="/platform.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Platform</a>
-                            <a href="/theorycrafting.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Theorycrafting</a>
-                            <a href="/docs/" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Docs</a>
+                        <div class="hidden md:flex items-center space-x-8"><a href="#registry" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Registry</a><a href="#arc" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Arc</a><a href="how-it-works.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">How It Works</a><a href="products/app.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">App</a><a href="docs/index.html" class="text-gray-200 text-opacity-70 hover:text-cyan transition-colors duration-300 text-sm tracking-wider uppercase" style="text-decoration: none;">Docs</a>
                         </div>
                     </div>
                 </div>
@@ -58,20 +43,20 @@
           INERTIA </h1>
                     <!-- Tagline -->
                     <p class="hero-subtitle text-lg sm:text-xl md:text-2xl text-muted mb-8 sm:mb-12 font-light tracking-normal sm:tracking-wider" x-show="loaded" x-transition:enter="transition ease-out duration-1000 delay-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
-          Discover What Makes You Win. Prove What Actually Works.</p>
+          The Open Home for Battling-Top Design.</p>
                     <!-- Sub-tagline -->
                     <p class="text-base sm:text-lg text-gray-200 text-opacity-70 mb-8 sm:mb-12 font-light" x-show="loaded" x-transition:enter="transition ease-out duration-1000 delay-400" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-          Test your combos. Reveal hidden physics. Build the data that proves it's a sport.</p>
+          Design custom tops. Play them in real physics. Keep credit — and a cut — when others build on your work.</p>
                     <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" x-show="loaded" x-transition:enter="transition ease-out duration-1000 delay-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" style="padding-top: px;"><a href="/products/app.html" class="cta-primary text-lg px-10 py-4">
-            Download Beta </a>
-                        <a href="#products" class="cta-secondary text-lg px-10 py-4">
-            Explore Ecosystem </a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" x-show="loaded" x-transition:enter="transition ease-out duration-1000 delay-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" style="padding-top: px;">
+                        <a href="#newsletter" class="cta-primary text-lg px-10 py-4">
+            Join the Early List </a><a href="how-it-works.html" class="cta-secondary text-lg px-10 py-4">
+            How It Works </a>
                     </div>
-                    <!-- Insight Prototype Preview -->
+                    <!-- Demo Video (placeholder: currently the Insight hardware clip — swap for a simulator/registry demo) -->
                     <div class="mt-12 max-w-3xl mx-auto" x-show="loaded" x-transition:enter="transition ease-out duration-1000 delay-700" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
                         <div class="relative aspect-video rounded-lg overflow-hidden border border-cyan-500 border-opacity-20">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xxw90HHX1TY" title="Insight Prototype Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xxw90HHX1TY" title="Inertia Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 </iframe>
                         </div>
                     </div>
@@ -82,109 +67,95 @@
             <section id="products" class="container py-32" x-data="{ visible: false }" x-intersect="visible = true">
                 <div class="text-center mb-20" x-show="visible" x-transition:enter="transition ease-out duration-800" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
                     <h2 class="text-5xl md:text-6xl font-thin tracking-widest mb-6">
-          THE ECOSYSTEM </h2>
+          ONE OPEN PLATFORM </h2>
                     <p class="text-xl text-muted max-w-3xl mx-auto">
-          Free platform, premium hardware, infinite depth. Built for competitive players who demand more. </p>
+          A common, attributed home for original battling-top designs — built on the open Zephyr protocol. Deposit a design, play it, fork it, print it. Credit and payment follow the work. </p>
                 </div>
                 <div class="grid-3">
-                    <div class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-100" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-                        <div class="pre-order-badge absolute">Free • Open Beta</div>
+                    <div id="arc" class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-100" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+                        <div class="pre-order-badge absolute">Free • Open Source</div>
+                        <div class="product-icon">
+                            <img src="../assets/feather-cyan/play-circle.svg" style="width: 48px; height: 48px;"/>
+                        </div>
+                        <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
+            ARC </h3>
+                        <p class="text-muted leading-relaxed mb-4">Arc is the open simulator: upload a design and play it instantly in real, geometry-driven physics. No stats to game — your shape, weight, and contact points are the gameplay. Runs offline; point it at any design library and iterate before you ever print.</p>
+                        <p class="text-sm text-gray-300 text-opacity-60 italic">The open engine the community builds toward true-to-life. Free, forever.</p><a href="how-it-works.html#arc" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
+            How it works → </a>
+                    </div>
+                    <div id="registry" class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-200" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+                        <div class="pre-order-badge absolute">Core • In Development</div>
+                        <div class="product-icon">
+                            <img src="../assets/feather-cyan/git-branch.svg" style="width: 48px; height: 48px;"/>
+                        </div>
+                        <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
+            REGISTRY </h3>
+                        <p class="text-muted leading-relaxed mb-4">Upload a design to Inertia and it's logged with attribution. Fork or remix it and the lineage stays linked back to every author. You set the license and royalty terms — and they travel with the file wherever it goes.</p>
+                        <p class="text-sm text-gray-300 text-opacity-60 italic">Makers get seen among peers. Credit is native, not an afterthought.</p><a href="how-it-works.html#registry" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
+            How it works → </a>
+                    </div>
+                    <div class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-300" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+                        <div class="pre-order-badge absolute">On the Roadmap</div>
+                        <div class="product-icon">
+                            <img src="../assets/feather-cyan/dollar-sign.svg" style="width: 48px; height: 48px;"/>
+                        </div>
+                        <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
+            PRINT &amp; GET PAID </h3>
+                        <p class="text-muted leading-relaxed mb-4">Order a print through the platform and one payment fans out automatically — to every designer in the lineage and the manufacturer who makes it. Real money over open payment rails. No token, no middleman markup.</p>
+                        <p class="text-sm text-gray-300 text-opacity-60 italic">Buy a top, and the people who designed it are paid in the same click.</p><a href="how-it-works.html#print" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
+            How it works → </a>
+                    </div>
+                    <div class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-300" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+                        <div class="pre-order-badge absolute">Live • Free</div>
                         <div class="product-icon">
                             <img src="../assets/feather-cyan/zap.svg" style="width: 48px; height: 48px;"/>
                         </div>
                         <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
             INERTIA APP </h3>
-                        <p class="text-muted leading-relaxed mb-4">Tournament automation, practice tracking, combo building, battle archives. Test your theories in Workshop. Track your journey in Metascope. Run tournaments that save organizers 90 minutes.</p>
-                        <p class="text-sm text-gray-300 text-opacity-60 italic">Discovery AND validation. Free, forever. Download today.</p>
-                        <a href="/products/app.html" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
-            Download Now → </a>
-                    </div>
-                    <div class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-200" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-                        <div class="pre-order-badge absolute">
-                            Q2 2026
-</div>
-                        <div class="product-icon">
-                            <img src="../assets/feather-cyan/compass.svg" style="width: 48px; height: 48px;"/>
-                        </div>
-                        <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
-            INSIGHT </h3>
-                        <p class="text-muted leading-relaxed mb-3">Reveal the physics variables you can actually control. Measure launch angle, RPM, consistency. Discover what makes YOUR combos work. When invisible forces become visible, breakthrough moments happen.</p>
-                        <p class="text-sm text-gray-300 text-opacity-60 italic">Hardware development focus: December 2025. Production-ready design in progress.</p>
-                        <a href="/theorycrafting.html" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
-            Learn more → </a>
-                    </div>
-                    <div class="card relative" x-show="visible" x-transition:enter="transition ease-out duration-600 delay-300" x-transition:enter-start="opacity-0 translate-y-8 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-                        <div class="pre-order-badge absolute">Q3 2026</div>
-                        <div class="product-icon">
-                            <img src="../assets/feather-cyan/aperture.svg" style="width: 48px; height: 48px;"/>
-                        </div>
-                        <h3 class="text-cyan text-xl mb-3 font-light tracking-wider">
-            AXIS </h3>
-                        <p class="text-muted leading-relaxed mb-4">Computer vision that captures what actually happened. Every collision, finish, and battle event verified. Juding assistance, broadcast-ready clips, tournament footage that becomes part of your performance data.</p>
-                        <p class="text-sm text-gray-300 text-opacity-60 italic">The arbiter that never blinks. The data layer for evidence-based competition.</p>
-                        <a href="/theorycrafting.html" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
-            Learn more → </a>
+                        <p class="text-muted leading-relaxed mb-4">The companion for competitive play, live in open beta today. Run tournaments that save organizers 90 minutes, track practice, build combos, and archive your battles.</p>
+                        <p class="text-sm text-gray-300 text-opacity-60 italic">Free, forever. Download today.</p><a href="products/app.html" class="inline-block mt-4 text-cyan hover:text-gray-100 transition-colors">
+            Download now → </a>
                     </div>
                 </div>
             </section>
-            <!-- ECOSYSTEM VISION SECTION -->
+            <!-- THE LOOP SECTION -->
             <section class="relative py-32 overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
                 <div class="container">
                     <div class="text-center mb-20" x-show="visible" x-transition:enter="transition ease-out duration-800" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
                         <h2 class="text-5xl md:text-6xl font-thin tracking-widest mb-6">
-            TEST. DISCOVER. PROVE. </h2>
-                        <p class="text-xl text-muted max-w-3xl mx-auto">Insight reveals how you launched. The app captures the matchup and result. Axis records what happened in the battle. Combined, you understand WHY a combo won—not just that it won. That's the infrastructure for discovery AND validation.</p>
+            DESIGN. PLAY. BUILD ON IT. </h2>
+                        <p class="text-xl text-muted max-w-3xl mx-auto">One geometry spine runs the whole loop. The same file you design is the file you play, fork, and print — and credit follows it at every hop.</p>
                     </div>
-                    <!-- Ecosystem Vision Visualization -->
-                    <div class="hidden md:block relative max-w-5xl mx-auto" x-show="visible" x-transition:enter="transition ease-out duration-1000 delay-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                        <!-- Central Hub -->
-                        <div class="relative flex items-center justify-center" style="height: 500px;">
-                            <!-- Large Circle Background -->
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-96 h-96 border border-cyan-500 border-opacity-20 rounded-full"></div>
-                            </div>
-                            <!-- INERTIA APP - Top Center -->
-                            <div class="absolute" style="top: -20px; left: 50%; transform: translateX(-50%);">
-                                <div class="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-6 text-center border border-cyan-500 border-opacity-30 min-w-[140px]">
-                                    <div class="ecosystem-icon">
-                                        <img src="../assets/feather-cyan/zap.svg" style="width: 36px; height: 36px;"/>
-                                    </div>
-                                    <div class="text-sm text-gray-100 font-medium">INERTIA APP</div>
-                                    <div class="text-xs text-muted">Tournament Platform</div>
-                                </div>
-                            </div>
-                            <!-- INSIGHT - Bottom Left -->
-                            <div class="absolute" style="bottom: -20px; left: 25%; transform: translateX(-50%);">
-                                <div class="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-6 text-center border border-cyan-500 border-opacity-30 min-w-[140px]">
-                                    <div class="ecosystem-icon">
-                                        <img src="../assets/feather-cyan/compass.svg" style="width: 36px; height: 36px;"/>
-                                    </div>
-                                    <div class="text-sm text-gray-100 font-medium">INSIGHT</div>
-                                    <div class="text-xs text-muted">The Compass</div>
-                                </div>
-                            </div>
-                            <!-- AXIS - Bottom Right -->
-                            <div class="absolute" style="bottom: -20px; right: 25%; transform: translateX(50%);">
-                                <div class="bg-gray-800 bg-opacity-50 backdrop-blur rounded-lg p-6 text-center border border-cyan-500 border-opacity-30 min-w-[140px]">
-                                    <div class="ecosystem-icon">
-                                        <img src="../assets/feather-cyan/aperture.svg" style="width: 36px; height: 36px;"/>
-                                    </div>
-                                    <div class="text-sm text-gray-100 font-medium">AXIS</div>
-                                    <div class="text-xs text-muted">The Arbiter</div>
-                                </div>
-                            </div>
-                            <!-- Center Vision Statement -->
-                            <div class="relative z-10 text-center max-w-md" style="margin-top: 100px;">
-                                <div class="mb-4">
-</div>
-                                <h3 class="text-2xl font-bold tracking-wide mb-3">
-                                    Where Practice<br/> Becomes <span class="text-cyan">Velocity</span> </h3>
-                                <p class="text-sm text-muted" style="margin-left: 70px; margin-right: 65px;">The ecosystem that transforms rotational practice into linear progress. Compete, measure, broadcast—then repeat, refined.</p>
-                            </div>
+                    <div class="grid-3" x-show="visible" x-transition:enter="transition ease-out duration-1000 delay-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">01</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Design</h3>
+                            <p class="text-muted text-sm leading-relaxed">Model an original top in CAD and export a STEP file — structured geometry, not triangle-soup mesh.</p>
                         </div>
-                        <!-- Vision Statement -->
-                        <div class="text-center mt-16">
-                            <p class="text-lg text-gray-200 text-opacity-80 max-w-2xl mx-auto leading-relaxed">Every battle is a test. Every test reveals patterns. Every pattern becomes data. When everyone's discovering and sharing, the evidence accumulates—transforming how the community makes decisions. That's Inertia.</p>
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">02</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Simulate</h3>
+                            <p class="text-muted text-sm leading-relaxed">Drop it into Arc and battle it in real physics. Watch how the geometry actually behaves before you commit a print.</p>
+                        </div>
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">03</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Deposit</h3>
+                            <p class="text-muted text-sm leading-relaxed">Log it in the registry with attribution and your own license + royalty terms attached to the file.</p>
+                        </div>
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">04</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Fork &amp; Remix</h3>
+                            <p class="text-muted text-sm leading-relaxed">Anyone can build on it. Every iteration stays linked to the lineage it came from — yours included.</p>
+                        </div>
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">05</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Print</h3>
+                            <p class="text-muted text-sm leading-relaxed">Order it from a print-on-demand maker in plastic or metal, straight through the platform.</p>
+                        </div>
+                        <div class="card text-center">
+                            <div class="text-3xl text-cyan font-thin mb-3">06</div>
+                            <h3 class="text-cyan text-lg mb-2 font-light tracking-wider">Get Paid</h3>
+                            <p class="text-muted text-sm leading-relaxed">One payment splits along the chain — every designer in the lineage, plus the maker who printed it.</p>
                         </div>
                     </div>
                 </div>
@@ -196,15 +167,14 @@
                 <div class="container relative z-10">
                     <div class="max-w-4xl mx-auto text-center">
                         <h2 class="text-4xl md:text-5xl font-thin tracking-widest mb-12">
-                            DISCOVERY AND VALIDATION </h2>
+                            CREDIT THAT FOLLOWS THE WORK </h2>
                         <div class="space-y-8">
                             <blockquote class="text-2xl md:text-3xl font-thin leading-relaxed text-gray-200 text-opacity-90">
-                                "Test. Discover. Understand. Iterate.<br/>
-                                When everyone's testing and sharing,<br/>
-                                <span class="text-cyan">the evidence accumulates.</span>"
+                                "Make the sport legible so the athlete can be seen.<br/>
+                                Make creativity legible so the creator can be seen —<br/><span class="text-cyan">and paid.</span>"
                             </blockquote>
                             <p class="text-lg text-gray-300 text-opacity-70 max-w-2xl mx-auto pt-6">
-                                Inertia reveals the physics variables you can actually control. The community builds the data that enables informed decisions. Discovery at the individual level. Validation at the community level. Both happening simultaneously. </p>
+                                Designs here are open, so anyone can build on them — and the community owns the geometry, the mechanics, the launcher. Attribution is verifiable; payment rides real money over open payment rails. Cryptography, not cryptocurrency — no token, no speculation. Inertia is the platform; the open Zephyr protocol is what lets credit travel with the work. </p>
                         </div>
                     </div>
                 </div>
@@ -403,6 +373,49 @@
 
                 animate();
             </script>
+            <!-- MILESTONES SECTION -->
+            <section id="milestones" class="relative py-32 overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="container max-w-4xl mx-auto">
+                    <div class="text-center mb-16" x-show="visible" x-transition:enter="transition ease-out duration-800" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
+                        <h2 class="text-5xl md:text-6xl font-thin tracking-widest mb-6">WHERE WE ARE</h2>
+                        <p class="text-xl text-muted max-w-3xl mx-auto">Built in the open, foundation first. Here's what's live, what's proven, and what's next.</p>
+                    </div>
+                    <div class="card max-w-3xl mx-auto" x-show="visible" x-transition:enter="transition ease-out duration-1000 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
+                        <div class="space-y-4">
+                            <div class="border-l-2 border-cyan pl-4 bg-cyan bg-opacity-5">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-lg text-cyan font-light">Inertia App — Open Beta</h4><span class="text-sm text-gold">Live Now</span>
+                                </div>
+                                <p class="text-sm text-gray-300">The competitive-play companion is live and free — tournament automation, practice tracking, combo building. The community foundation everything else connects to.</p>
+                            </div>
+                            <div class="border-l-2 border-cyan pl-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-lg text-cyan font-light">Geometry Engine — Tier-0 Validation</h4><span class="text-sm text-gold">Proven</span>
+                                </div>
+                                <p class="text-sm text-gray-300">Real community designs separate cleanly into attack / stamina / defense archetypes from geometry alone — zero authored stats. The "your shape is the gameplay" thesis holds on real files.</p>
+                            </div>
+                            <div class="border-l-2 border-cyan pl-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-lg text-cyan font-light">Arc — The Simulator (MVP)</h4><span class="text-sm text-gray-400">In Development</span>
+                                </div>
+                                <p class="text-sm text-gray-300">Load a design, drop it in a bowl, and battle it. The open engine the developer community grows toward true-to-life fidelity.</p>
+                            </div>
+                            <div class="border-l-2 border-cyan pl-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-lg text-cyan font-light">Design Registry + Attribution</h4><span class="text-sm text-gray-400">In Development</span>
+                                </div>
+                                <p class="text-sm text-gray-300">Deposit, fork, and remix with machine-checkable lineage — built on the open Zephyr protocol so credit and terms travel with every file.</p>
+                            </div>
+                            <div class="border-l-2 border-cyan pl-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-lg text-cyan font-light">Print-to-Pay Loop</h4><span class="text-sm text-gray-400">Next</span>
+                                </div>
+                                <p class="text-sm text-gray-300">Order a print and one cross-border payment splits fairly across every designer in the lineage and the maker who printed it — real money, no token.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!-- NEWSLETTER SECTION -->
             <section id="newsletter" class="relative py-32 overflow-hidden" x-data="{ visible: false }" x-intersect="visible = true">
                 <!-- Background accent -->
@@ -412,7 +425,7 @@
                         <h2 class="text-4xl md:text-5xl font-thin tracking-widest mb-6">
             STAY UPDATED </h2>
                         <p class="text-xl text-muted mb-4 leading-relaxed">
-            App beta is live now. Get updates on Insight hardware development, app improvements, and ecosystem progress.</p>
+            We're building the open home for battling-top design. Get early access to Arc and the registry, new tools as they drop, and a say in where it goes.</p>
                         <!--<p class="text-sm text-cyan mb-12">Join 500+ competitors already on the list</p>-->
                         <!-- Form -->
                         <form action="https://buttondown.email/api/emails/embed-subscribe/xerah" method="post" target="_blank" class="space-y-6">
@@ -428,7 +441,11 @@
                         <div class="mt-12 pt-8 border-t border-gray-800 border-opacity-30">
                             <p class="mb-4 text-gray-300 text-opacity-60 text-xs tracking-wider uppercase">
               What you'll get: </p>
-                            <div class="flex flex-wrap justify-center gap-6 text-sm text-muted"><span>• Ecosystem Updates</span><span>• Performance Insights</span><span>• Launch Notifications</span><span>• Exclusive Content</span>
+                            <div class="flex flex-wrap justify-center gap-6 text-sm text-muted">
+                                <span>• Early Access</span>
+                                <span>• New Tool Drops</span>
+                                <span>• Design Challenges</span>
+                                <span>• Build Updates</span>
                             </div>
                         </div>
                     </div>
@@ -440,16 +457,12 @@
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
                             <h3 class="text-2xl font-thin tracking-widest mb-2">INERTIA</h3>
-                            <p class="text-sm text-muted">© 2025. All rights reserved.</p>
+                            <p class="text-sm text-muted">© 2026. All rights reserved.</p>
                         </div>
-                        <div class="flex space-x-8">
-                            <a href="/privacy.html" class="text-sm text-muted hover:text-cyan transition-colors">
-              Privacy </a>
-                            <a href="/404.html" class="text-sm text-muted hover:text-cyan transition-colors">
-              Terms </a>
-                            <a href="/delete-account.html" class="text-sm text-muted hover:text-cyan transition-colors">
-              Delete Account </a>
-                            <a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">
+                        <div class="flex space-x-8"><a href="privacy.html" class="text-sm text-muted hover:text-cyan transition-colors">
+              Privacy </a><a href="404.html" class="text-sm text-muted hover:text-cyan transition-colors">
+              Terms </a><a href="delete-account.html" class="text-sm text-muted hover:text-cyan transition-colors">
+              Delete Account </a><a href="mailto:contact@inertia.cx" class="text-sm text-muted hover:text-cyan transition-colors">
               Contact </a>
                         </div>
                     </div>
