@@ -285,7 +285,7 @@
             const bLive = this.isLive(b);
             if (aLive && !bLive) return -1;
             if (!aLive && bLive) return 1;
-            // Both same status — most recent first
+            // Both same status - most recent first
             const aDate = new Date(a.finished_at || a.started_at);
             const bDate = new Date(b.finished_at || b.started_at);
             return bDate - aDate;

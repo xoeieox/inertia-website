@@ -179,11 +179,11 @@
                 </div>
                 <!-- Game Differential -->
                 <div class="stat-cell">
-                  <span x-text="player.game_differential !== undefined ? (player.game_differential >= 0 ? '+' : '') + player.game_differential : '—'"></span>
+                  <span x-text="player.game_differential !== undefined ? (player.game_differential >= 0 ? '+' : '') + player.game_differential : '-'"></span>
                 </div>
                 <!-- Buchholz -->
                 <div class="stat-cell col-buchholz">
-                  <span x-text="player.buchholz !== undefined ? Number(player.buchholz).toFixed(1) : '—'"></span>
+                  <span x-text="player.buchholz !== undefined ? Number(player.buchholz).toFixed(1) : '-'"></span>
                 </div>
               </div>
             </template>

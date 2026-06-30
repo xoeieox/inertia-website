@@ -216,7 +216,7 @@ function getStageStatus(stageId, tournament, stagesArray) {
   const currentIndex = stagesArray.findIndex(s => s.stageId === currentStage);
 
   if (currentIndex === -1) {
-    // Can't determine — mark first as active, rest pending
+    // Can't determine - mark first as active, rest pending
     return stageIndex === 0 ? 'active' : 'pending';
   }
 
